@@ -11,16 +11,21 @@ class samba::winbind (
   $shell              = $samba::params::shell,
   $use_default_domain = $samba::params::use_default_domain,
   $offline_login      = $samba::params::offline_login,
-) {
+) inherits samba::params {
 
   case $::operatingsystem {
-    centos,redhat: { $winbind = 'samba-winbind' }
-    debian,ubuntu: { $winbind = 'winbind' }
+    centos, redhat: { $winbind = 'samba-winbind' }
+    debian, ubuntu: { $winbind = 'winbind' }
     default: { fail("${::operatingsystem} is not recogonized") }
   }
 
   package { $winbind:
     ensure => installed,
+  }
+
+  service { 'winbind':
+    ensure => running,
+    enable => true,
   }
 
 }
