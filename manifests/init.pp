@@ -14,13 +14,13 @@ class samba (
 ) inherits samba::params {
 
   # convert the string to a boolean
-  str2bool($winbind)
+  #str2bool($winbind)
 
   package { 'samba':
     ensure => installed,
   }
 
-  if $winbind == true {
+  if ($winbind) {
     include samba::winbind
   }
 
@@ -33,4 +33,12 @@ class samba (
     content => template('samba/smb.conf.erb'),
     require => Package['samba'],
   }
+
+  service { 'samba':
+    ensure     => running,
+    name       => $samba::params::service,
+    enable     => true,
+    subscribe  => Package['samba'],
+  }
+
 }

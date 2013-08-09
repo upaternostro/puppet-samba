@@ -26,7 +26,7 @@ class samba::winbind (
   service { 'winbind':
     ensure  => running,
     enable  => true,
-    require => Package[$winbind_package],
+    require => Package[$winbind],
   }
 
 }
