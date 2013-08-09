@@ -10,11 +10,15 @@
 #  Linux systems
 #
 class samba (
-  $winbind = false,
+  $winbind = undef,
 ) inherits samba::params {
 
-  package { $package_name:
+  package { 'samba':
     ensure => installed,
+  }
+
+  if $winbind == true {
+    include samba::winbind
   }
 
   file { 'smb.conf':

@@ -5,6 +5,11 @@
 # Samba parameters
 #
 class samba::params {
+  #default settings
+  $logdir            = ''
+
+  # shares
+
   # Winbind
   $workgroup          = ''
   $passwd_server      = ''

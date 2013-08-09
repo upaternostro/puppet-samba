@@ -1,13 +1,15 @@
 #======================= Global Settings =====================================
 
+<% if @winbind %>
 [global]
-  workgroup =
-  password server =
-  realm =
-  security = ads
-  idmap uid = 16777216-33554431
+  workgroup = <% @workgroup %>
+  password server = <% @passwd_server %>
+  realm = <% @realm %>
+  security = <% @security %>
+  idmap uid = <% @idmap_uid %>
   idmap gid = 16777216-33554431
   winbind separator = +
   template shell = /bin/bash
   winbind use default domain = true
   winbind offline logon = false
+<% end %>
