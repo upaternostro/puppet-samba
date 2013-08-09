@@ -36,7 +36,7 @@ class samba (
 
   service { 'samba':
     ensure     => running,
-    name       => $samba::params::service,
+    name       => $samba::params::samba_service,
     enable     => true,
     subscribe  => Package['samba'],
   }
