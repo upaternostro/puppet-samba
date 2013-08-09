@@ -16,11 +16,11 @@ class samba::params {
   #$realm              = ''
   #$security           = ''
   #$idmap_uid          = ''
-  $idmap_gid          = ''
-  $seperator          = ''
-  $shell              = ''
-  $use_default_domain = ''
-  $offline_login      = ''
+  #$idmap_gid          = ''
+  #$seperator          = ''
+  #$shell              = ''
+  #$use_default_domain = ''
+  #$offline_login      = ''
 
   case $::operatingsystem {
     centos, redhat: {
