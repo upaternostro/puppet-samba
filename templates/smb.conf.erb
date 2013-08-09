@@ -2,11 +2,11 @@
 
 <% if @winbind %>
 [global]
-  workgroup = <% @workgroup %>
-  password server = <% @passwd_server %>
-  realm = <% @realm %>
-  security = <% @security %>
-  idmap uid = <% @idmap_uid %>
+  workgroup = <%= @workgroup %>
+  password server = <%= @passwd_server %>
+  realm = <%= @realm %>
+  security = <%= @security %>
+  idmap uid = <%= @idmap_uid %>
   idmap gid = 16777216-33554431
   winbind separator = +
   template shell = /bin/bash

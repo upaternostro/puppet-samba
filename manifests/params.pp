@@ -11,16 +11,16 @@ class samba::params {
   # shares
 
   # Winbind
-  #  $workgroup          = undef
-  #  $passwd_server      = ''
-  #  $realm              = ''
-  #  $security           = ''
-  #  $idmap_uid          = ''
-  #  $idmap_gid          = ''
-  #  $seperator          = ''
-  #  $shell              = ''
-  #  $use_default_domain = ''
-  #  $offline_login      = ''
+  $workgroup          = undef
+  $passwd_server      = ''
+  $realm              = ''
+  $security           = ''
+  $idmap_uid          = ''
+  $idmap_gid          = ''
+  $seperator          = ''
+  $shell              = ''
+  $use_default_domain = ''
+  $offline_login      = ''
 
   case $::operatingsystem {
     centos, redhat: {
