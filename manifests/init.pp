@@ -10,8 +10,17 @@
 #  Linux systems
 #
 class samba (
-  $winbind   = false,
-  $workgroup = $samba::params::workgroup,
+  $winbind            = false,
+  $workgroup          = false,
+  $passwd_server      = false,
+  $realm              = false,
+  $security           = false,
+  $idmap_uid          = false,
+  $idmap_gid          = false,
+  $seperator          = false,
+  $shell              = false,
+  $use_default_domain = false,
+  $offline_login      = false,
 ) inherits samba::params {
 
   # convert the string to a boolean
