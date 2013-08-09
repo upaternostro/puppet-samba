@@ -11,7 +11,6 @@
 #
 class samba (
   $winbind   = false,
-  $workgroup = $samba::params::workgroup,
 ) inherits samba::params {
 
   # convert the string to a boolean

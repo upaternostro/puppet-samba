@@ -11,11 +11,11 @@ class samba::params {
   # shares
 
   # Winbind
-  $workgroup          = undef
-  $passwd_server      = ''
-  $realm              = ''
-  $security           = ''
-  $idmap_uid          = ''
+  #$workgroup          = ''
+  #$passwd_server      = ''
+  #$realm              = ''
+  #$security           = ''
+  #$idmap_uid          = ''
   $idmap_gid          = ''
   $seperator          = ''
   $shell              = ''
