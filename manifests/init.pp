@@ -10,8 +10,11 @@
 #  Linux systems
 #
 class samba (
-  $winbind = undef,
+  $winbind = false,
 ) inherits samba::params {
+
+  # convert the string to a boolean
+  str2bool($winbind)
 
   package { 'samba':
     ensure => installed,
@@ -28,5 +31,6 @@ class samba (
     group   => 'root',
     mode    => '0644',
     content => template('samba/smb.conf.erb'),
+    require => Package['samba'],
   }
 }

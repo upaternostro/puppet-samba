@@ -14,18 +14,19 @@ class samba::winbind (
 ) inherits samba::params {
 
   case $::operatingsystem {
-    centos, redhat: { $winbind = 'samba-winbind' }
-    debian, ubuntu: { $winbind = 'winbind' }
+    centos, redhat: { $winbind_package = 'samba-winbind' }
+    debian, ubuntu: { $winbind_package = 'winbind' }
     default: { fail("${::operatingsystem} is not recogonized") }
   }
 
-  package { $winbind:
+  package { $winbind_package:
     ensure => installed,
   }
 
   service { 'winbind':
-    ensure => running,
-    enable => true,
+    ensure  => running,
+    enable  => true,
+    require => Package[$winbind_package],
   }
 
 }
