@@ -1,7 +1,7 @@
 # == Class: samba::winbind
 #
 class samba::winbind (
-  $workgroup          = $samba::params::workgroup,
+  #$workgroup          = $samba::params::workgroup,
   $passwd_server      = $samba::params::passwd_server,
   $realm              = $samba::params::realm,
   $security           = $samba::params::security,
