@@ -6,14 +6,16 @@
 #
 class samba::params {
 
-  case $::operatingsystem {
-    centos, redhat: {
+  case $::osfamily {
+    RedHat: {
       $samba_service   = 'smb'
+      $winbind_package = 'samba-winbind'
       $winbind_service = 'winbind'
     }
-    debian, ubuntu: {
+    Debian: {
       $samba_service   = 'samba'
       $winbind_service = 'winbind'
+      $winbind_package = 'winbind'
     }
     default: {
       fail("${::operatingsystem} is currently not supported by this module.")

@@ -10,27 +10,40 @@
 #  Linux systems
 #
 class samba (
+  # Global settings
+  $logdir             = '/var/log/samba/',
+
+  # winbind settings
   $winbind            = false,
-  $workgroup          = false,
-  $passwd_server      = false,
-  $realm              = false,
-  $security           = false,
-  $idmap_uid          = false,
-  $idmap_gid          = false,
-  $seperator          = false,
-  $shell              = false,
-  $use_default_domain = false,
-  $offline_login      = false,
+  $workgroup          = undef,
+  $passwd_server      = undef,
+  $realm              = undef,
+  $security           = undef,
+  $idmap_uid          = undef,
+  $idmap_gid          = undef,
+  $seperator          = undef,
+  $shell              = undef,
+  $use_default_domain = undef,
+  $offline_login      = undef,
 ) inherits samba::params {
 
-  # convert the string to a boolean
-  #str2bool($winbind)
+  # validate input!
+  validate_string($workgroup)
+  validate_string($passwd_server)
+  validate_string($realm)
+  validate_string($security)
+  validate_string($idmap_uid)
+  validate_string($idmap_gid)
+  validate_string($seperator)
+  validate_string($shell)
+  validate_string($use_default_domain)
+  validate_string($offline_login)
 
   package { 'samba':
     ensure => installed,
   }
 
-  if ($winbind) {
+  if str2bool($winbind) {
     include samba::winbind
   }
 
