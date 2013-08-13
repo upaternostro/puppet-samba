@@ -6,6 +6,10 @@
 #
 class samba::params {
 
+  # Shares
+  $share_name         = undef
+
+  # Winbind
   $winbind            = false
   $workgroup          = undef
   $passwd_server      = undef
