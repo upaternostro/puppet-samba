@@ -17,10 +17,16 @@ class samba (
   $logdir             = '/var/log/samba/',
 
   # Share settings
-  $share_name        = $samba::params::share_name,
+  $shares            = false,
+  $share_name        = undef,
+  $share_seperator   = undef,
+  $share_path        = undef,
+  $share_public      = undef,
+  $share_writeable   = undef,
+  $share_users       = undef,
 
   # winbind settings
-  $winbind            = $samba::params::winbind,
+  $winbind            = false,
   $workgroup          = $samba::params::workgroup,
   $passwd_server      = $samba::params::passwd_server,
   $realm              = $samba::params::realm,
@@ -44,6 +50,12 @@ class samba (
   validate_string($shell)
   validate_string($use_default_domain)
   validate_string($offline_login)
+  validate_string($share_name)
+  validate_string($share_seperator)
+  validate_string($share_path)
+  validate_string($share_public)
+  validate_string($share_writeable)
+  validate_string($share_users)
 
   package { 'samba':
     ensure => installed,
@@ -53,10 +65,15 @@ class samba (
   #    include samba::winbind
   #  }
 
-  if ($winbind == true) {
+  if ($winbind) {
     class { 'samba::winbind':
     }
   }
+
+  #if ($shares) {
+  #  class { 'samba::shares':
+  #  }
+  #}
 
   file { 'smb.conf':
     ensure  => file,

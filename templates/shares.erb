@@ -1,19 +1,27 @@
 <% if @share_name -%>
-[<%= @share_name %>]
+  [<%= @share_name %>]
 <% end -%>
 <% if @share_comment -%>
-comment = "<%= @share_comment %>"
+  comment = "<%= @share_comment %>"
 <% end -%>
 <% if @browseable -%>
-browseable = <%= @browseable %>
+  browseable = <%= @browseable %>
 <% end -%>
 <% if @guest_ok -%>
-guest ok = <%= @guest_ok %>
+  guest ok = <%= @guest_ok %>
 <% end -%>
-path = /var/www/html
-writable = yes
-public = yes
-valid users = *
+<% if @share_path -%>
+  path = <%= @share_path %>
+<% end %>
+<% if @share_writeable -%>
+  writable = <%= @share_writeable %>
+<% end %>
+<% if @share_public -%>
+  public = <%= @share_public %>
+<% end %>
+<% if @share_users -%>
+  valid users = <%= @share_users %>
+<% end %>
 guest ok = yes
 guest only = yes
 guest account = nobody

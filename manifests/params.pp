@@ -7,10 +7,11 @@
 class samba::params {
 
   # Shares
-  $share_name         = undef
+  #$shares             = false
+  #$share_name         = undef
 
   # Winbind
-  $winbind            = false
+  #$winbind            = false
   $workgroup          = undef
   $passwd_server      = undef
   $realm              = undef
