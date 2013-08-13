@@ -16,6 +16,9 @@ class samba (
   # Global settings
   $logdir             = '/var/log/samba/',
 
+  # Share settings
+  $share_name        = $samba::params::share_name,
+
   # winbind settings
   $winbind            = $samba::params::winbind,
   $workgroup          = $samba::params::workgroup,
