@@ -6,6 +6,18 @@
 #
 class samba::params {
 
+  $winbind            = false
+  $workgroup          = undef
+  $passwd_server      = undef
+  $realm              = undef
+  $security           = undef
+  $idmap_uid          = undef
+  $idmap_gid          = undef
+  $seperator          = undef
+  $shell              = undef
+  $use_default_domain = undef
+  $offline_login      = undef
+
   case $::osfamily {
     RedHat: {
       $samba_service   = 'smb'
@@ -18,7 +30,7 @@ class samba::params {
       $winbind_package = 'winbind'
     }
     default: {
-      fail("${::operatingsystem} is currently not supported by this module.")
+      fail("${::osfamily} is currently not supported by this module.")
     }
   }
 

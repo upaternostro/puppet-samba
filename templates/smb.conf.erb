@@ -1,15 +1,7 @@
 #======================= Global Settings =====================================
 
-<% if @winbind %>
-[global]
-  workgroup = <%= @workgroup %>
-  password server = <%= @passwd_server %>
-  realm = <%= @realm %>
-  security = <%= @security %>
-  idmap uid = <%= @idmap_uid %>
-  idmap gid = <%= @idmap_gid %>
-  winbind separator = <%= @separator %>
-  template shell = /bin/bash
-  winbind use default domain = <%= @use_default_domain %>
-  winbind offline logon = <%= @offline_login %>
-<% end %>
+<%= scope.function_template(['samba/winbind.erb']) -%>
+
+#============================ Share Definitions ==============================
+
+<%= scope.function_template(['samba/shares.erb']) -%>

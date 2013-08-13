@@ -9,22 +9,25 @@
 #  Winbind provides the ability to use Windows Domain accounts on
 #  Linux systems
 #
+# [*shares*]
+#  Manage Shares
+#
 class samba (
   # Global settings
   $logdir             = '/var/log/samba/',
 
   # winbind settings
-  $winbind            = false,
-  $workgroup          = undef,
-  $passwd_server      = undef,
-  $realm              = undef,
-  $security           = undef,
-  $idmap_uid          = undef,
-  $idmap_gid          = undef,
-  $seperator          = undef,
-  $shell              = undef,
-  $use_default_domain = undef,
-  $offline_login      = undef,
+  $winbind            = $samba::params::winbind,
+  $workgroup          = $samba::params::workgroup,
+  $passwd_server      = $samba::params::passwd_server,
+  $realm              = $samba::params::realm,
+  $security           = $samba::params::security,
+  $idmap_uid          = $samba::params::idmap_uid,
+  $idmap_gid          = $samba::params::idmap_gid,
+  $seperator          = $samba::params::seperator,
+  $shell              = $samba::params::shell,
+  $use_default_domain = $samba::params::use_default_domain,
+  $offline_login      = $samba::params::offline_login,
 ) inherits samba::params {
 
   # validate input!
@@ -43,8 +46,13 @@ class samba (
     ensure => installed,
   }
 
-  if str2bool($winbind) {
-    include samba::winbind
+  #  if str2bool($winbind) {
+  #    include samba::winbind
+  #  }
+
+  if ($winbind == true) {
+    class { 'samba::winbind':
+    }
   }
 
   file { 'smb.conf':
