@@ -70,11 +70,6 @@ class samba (
     }
   }
 
-  #if ($shares) {
-  #  class { 'samba::shares':
-  #  }
-  #}
-
   file { 'smb.conf':
     ensure  => file,
     path    => '/etc/samba/smb.conf',
