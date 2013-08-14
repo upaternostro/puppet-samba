@@ -17,13 +17,13 @@ class samba (
   $logdir             = '/var/log/samba/',
 
   # Share settings
-  $shares            = false,
-  $share_name        = undef,
-  $share_seperator   = undef,
-  $share_path        = undef,
-  $share_public      = undef,
-  $share_writeable   = undef,
-  $share_users       = undef,
+  #$shares            = false,
+  #$share_name        = undef,
+  #$share_seperator   = undef,
+  #$share_path        = undef,
+  #$share_public      = undef,
+  #$share_writeable   = undef,
+  #$share_users       = undef,
 
   # winbind settings
   $winbind            = false,
