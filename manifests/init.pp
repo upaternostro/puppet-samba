@@ -76,7 +76,7 @@ class samba (
     owner   => 'root',
     group   => 'root',
     mode    => '0644',
-    content => template('samba/smb.conf.erb'),
+    content => template('samba/smb.conf.erb','samba/shares.erb'),
     require => Package['samba'],
   }
 

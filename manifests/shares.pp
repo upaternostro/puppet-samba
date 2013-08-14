@@ -1,8 +1,10 @@
 # == Defninition: samba share definied type
 #
+# == Requires: Concat module
+#
 define samba::shares (
   # Share settings
-  $share_name,
+  #$share_name,
   $template         = 'samba/shares.erb',
   $shares           = false,
   $share_seperator  = undef,
@@ -13,8 +15,9 @@ define samba::shares (
 ) {
 
   include samba
+  include concat::setup
 
-  file { '/etc/samba/smb.conf':
+  file { 'smb.conf':
     content => template($template),
     owner   => 'root',
     group   => 'root',
