@@ -70,7 +70,7 @@ class samba (
     }
   }
 
-  file { 'smb.conf':
+  file  { 'smb.conf':
     ensure  => file,
     path    => '/etc/samba/smb.conf',
     owner   => 'root',
