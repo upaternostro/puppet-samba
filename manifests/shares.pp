@@ -14,8 +14,11 @@ define samba::shares (
   $share_users      = undef,
 ) {
 
-  include samba
   include concat::setup
+
+  if ! defined(Class['samba']) {
+    fail('You must include the samba base class')
+  }
 
   file { 'smb.conf':
     content => template($template),
