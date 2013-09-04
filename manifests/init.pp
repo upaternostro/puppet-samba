@@ -14,9 +14,7 @@
 #
 class samba (
   # Global settings
-  $logdir             = '/var/log/samba/',
-
-  # Share settings
+  $logdir             = $samba::params::logdir,
   #$shares            = false,
   #$share_name        = undef,
   #$share_seperator   = undef,
@@ -24,22 +22,10 @@ class samba (
   #$share_public      = undef,
   #$share_writeable   = undef,
   #$share_users       = undef,
-
   $package_name       = $samba::params::package_name,
   $package_ensure     = $samba::params::package_ensure,
-
-  # winbind settings
+  # winbind
   $winbind            = false,
-  $workgroup          = $samba::params::workgroup,
-  $passwd_server      = $samba::params::passwd_server,
-  $realm              = $samba::params::realm,
-  $security           = $samba::params::security,
-  $idmap_uid          = $samba::params::idmap_uid,
-  $idmap_gid          = $samba::params::idmap_gid,
-  $seperator          = $samba::params::seperator,
-  $shell              = $samba::params::shell,
-  $use_default_domain = $samba::params::use_default_domain,
-  $offline_login      = $samba::params::offline_login,
 ) inherits samba::params {
 
   # validate input!
@@ -60,35 +46,15 @@ class samba (
   validate_string($share_writeable)
   validate_string($share_users)
 
-  package { 'samba':
-    ensure => $samba::params::package_ensure,
-    name   => $samba::params::package_name,
-  }
+  include '::samba::client::install'
+  include '::samba::client::winbind'
+  include '::samba::client::config'
+  include '::samba::client::service'
 
-  #  if str2bool($winbind) {
-  #    include samba::winbind
-  #  }
-
-  if ($winbind) {
-    class { 'samba::winbind':
-    }
-  }
-
-  file  { 'smb.conf':
-    ensure  => file,
-    path    => '/etc/samba/smb.conf',
-    owner   => 'root',
-    group   => 'root',
-    mode    => '0644',
-    content => template('samba/smb.conf.erb','samba/shares.erb'),
-    require => Package['samba'],
-  }
-
-  service { 'samba':
-    ensure     => running,
-    name       => $samba::params::samba_service,
-    enable     => true,
-    subscribe  => Package['samba'],
-  }
+  Anchor['begin'] ->
+  Class['samba::install'] ->
+  Class['samba::config'] ->
+  Class['samba::service'] ->
+  Anchor['end']
 
 }
