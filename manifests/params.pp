@@ -8,8 +8,6 @@ class samba::params {
 
   # Winbind
   #$winbind            = false
-  $package_name       = undef
-  $package_ensure     = undef
   $workgroup          = undef
   $passwd_server      = undef
   $realm              = undef

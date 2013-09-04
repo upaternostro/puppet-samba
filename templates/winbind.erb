@@ -5,6 +5,6 @@
   idmap uid = <%= @idmap_uid %>
   idmap gid = <%= @idmap_gid %>
   winbind separator = <%= @separator %>
-  template shell = /bin/bash
+  template shell = <%= @template_shell %>
   winbind use default domain = <%= @use_default_domain %>
   winbind offline logon = <%= @offline_login %>
