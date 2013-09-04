@@ -46,7 +46,8 @@ class samba (
   validate_string($share_writeable)
   validate_string($share_users)
 
-  include '::samba::install'
+  include '::samba::client::install'
+  include '::samba::server'
   include '::samba::winbind'
   include '::samba::config'
 

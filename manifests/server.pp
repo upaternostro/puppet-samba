@@ -1,9 +1,9 @@
 # == Class: samba::install
 #
 class samba::server (
-  $enabled      = true,
-  $ensure       = true,
-  $manage_samba = true,
+  $enabled      = false,
+  $ensure       = present,
+  $manage_samba = false,
 ) inherits samba {
   $package_ensure = $samba::package_ensure
   $package_name   = $samba::package_name
