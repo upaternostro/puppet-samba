@@ -25,6 +25,9 @@ class samba (
   #$share_writeable   = undef,
   #$share_users       = undef,
 
+  $package_name       = $samba::params::package_name,
+  $package_ensure     = $samba::params::package_ensure,
+
   # winbind settings
   $winbind            = false,
   $workgroup          = $samba::params::workgroup,
@@ -58,7 +61,8 @@ class samba (
   validate_string($share_users)
 
   package { 'samba':
-    ensure => installed,
+    ensure => $samba::params::package_ensure,
+    name   => $samba::params::package_name,
   }
 
   #  if str2bool($winbind) {
