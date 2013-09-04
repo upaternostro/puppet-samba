@@ -46,15 +46,17 @@ class samba (
   validate_string($share_writeable)
   validate_string($share_users)
 
-  include '::samba::client::install'
-  include '::samba::client::winbind'
-  include '::samba::client::config'
-  include '::samba::client::service'
+  include '::samba::install'
+  include '::samba::winbind'
+  include '::samba::config'
 
-  Anchor['begin'] ->
-  Class['samba::install'] ->
-  Class['samba::config'] ->
-  Class['samba::service'] ->
-  Anchor['end']
+  anchor { 'samba::begin': }
+  anchor { 'samba::end': }
+
+  Anchor['samba::begin'] ->
+  Class['::samba::client::install'] ->
+  Class['::samba::server'] ->
+  Class['::samba::config'] ->
+  Anchor['samba::end']
 
 }
