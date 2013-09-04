@@ -6,8 +6,6 @@
 #
 class samba::params {
 
-  # Winbind
-  #$winbind            = false
   $workgroup          = undef
   $passwd_server      = undef
   $realm              = undef
@@ -21,16 +19,18 @@ class samba::params {
 
   case $::osfamily {
     RedHat: {
-      $package_name    = ''
-      $samba_service   = 'smb'
-      $winbind_package = 'samba-winbind'
-      $winbind_service = 'winbind'
+      $client_package_name    = 'samba-client'
+      $server_package_name    = 'samba-common'
+      $samba_service          = 'smb'
+      $winbind_package        = 'samba-winbind'
+      $winbind_service        = 'winbind'
     }
     Debian: {
-      $package_name    = ''
-      $samba_service   = 'samba'
-      $winbind_service = 'winbind'
-      $winbind_package = 'winbind'
+      $client_package_name    = 'smbclient'
+      $server_package_name    = 'samba'
+      $samba_service          = 'samba'
+      $winbind_service        = 'winbind'
+      $winbind_package        = 'winbind'
     }
     default: {
       fail("${::osfamily} is currently not supported by this module.")
