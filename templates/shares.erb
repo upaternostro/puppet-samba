@@ -12,16 +12,18 @@
 <% end -%>
 <% if @share_path -%>
   path = <%= @share_path %>
-<% end %>
+<% end -%>
 <% if @share_writeable -%>
   writable = <%= @share_writeable %>
-<% end %>
+<% end -%>
 <% if @share_public -%>
   public = <%= @share_public %>
-<% end %>
+<% end -%>
 <% if @share_users -%>
   valid users = <%= @share_users %>
-<% end %>
+<% end -%>
+<% if @share_guestok -%>
 guest ok = yes
+<% end -%>
 guest only = yes
 guest account = nobody

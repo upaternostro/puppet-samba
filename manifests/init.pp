@@ -15,15 +15,18 @@
 class samba (
   # Global settings
   $logdir             = $samba::params::logdir,
-  #$shares            = false,
-  #$share_name        = undef,
-  #$share_seperator   = undef,
-  #$share_path        = undef,
-  #$share_public      = undef,
-  #$share_writeable   = undef,
-  #$share_users       = undef,
+  $global_workgroup   = $samab::params::global_workgroup,
   $package_name       = $samba::params::package_name,
   $package_ensure     = $samba::params::package_ensure,
+
+  $shares            = false,
+  $share_name        = undef,
+  $share_seperator   = undef,
+  $share_path        = undef,
+  $share_public      = undef,
+  $share_writeable   = undef,
+  $share_users       = undef,
+
   $winbind            = false,
   $workgroup          = $samba::params::workgroup,
   $passwd_server      = $samba::params::passwd_server,

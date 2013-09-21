@@ -1,10 +1,52 @@
+# Samba configuration.  Managed by Puppet
+#
 #======================= Global Settings =====================================
 
 [global]
 
+# ----------------------- Network Related Options -------------------------
+
+workgroup = <% @global_workgroup %>
+server string = Samba Server Version %v
+interfaces = lo eth0 192.168.12.2/24 192.168.13.2/24
+hosts allow = 127. 192.168.12. 192.168.13.
+
+# --------------------------- Logging Options -----------------------------
+
+log file = /var/log/samba/log.%m
+# max 50KB per log file, then rotate
+max log size = 50
+
+# ----------------------- Standalone Server Options ------------------------
+
+security = user
+passdb backend = tdbsam
+
 # ----------------------- Domain Members Options ------------------------
 
 <%= scope.function_template(['samba/winbind.erb']) -%>
+
+# ----------------------- Domain Controller Options ------------------------
+
+# ----------------------- Browser Control Options ----------------------------
+
+local master = no
+os level = 33
+preferred master = yes
+
+#----------------------------- Name Resolution -------------------------------
+
+wins support = yes
+wins server = w.x.y.z
+wins proxy = yes
+dns proxy = yes
+
+# --------------------------- Printing Options -----------------------------
+
+load printers = yes
+cups options = raw
+
+# --------------------------- Filesystem Options ---------------------------
 
 #============================ Share Definitions ==============================
 

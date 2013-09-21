@@ -12,6 +12,7 @@ define samba::shares (
   $share_public     = undef,
   $share_writeable  = undef,
   $share_users      = undef,
+  $share_guest_ok   = undef,
 ) {
 
   include concat::setup
