@@ -24,8 +24,17 @@ class samba (
   #$share_users       = undef,
   $package_name       = $samba::params::package_name,
   $package_ensure     = $samba::params::package_ensure,
-  # winbind
   $winbind            = false,
+  $workgroup          = $samba::params::workgroup,
+  $passwd_server      = $samba::params::passwd_server,
+  $realm              = $samba::params::realm,
+  $security           = $samba::params::security,
+  $idmap_uid          = $samba::params::idmap_uid,
+  $idmap_gid          = $samba::params::idmap_gid,
+  $seperator          = $samba::params::seperator,
+  $shell              = $samba::params::shell,
+  $use_default_domain = $samba::params::use_default_domain,
+  $offline_login      = $samba::params::offline_login,
 ) inherits samba::params {
 
   # validate input!

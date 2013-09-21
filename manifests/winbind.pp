@@ -20,10 +20,11 @@ class samba::winbind (
     }
 
     service { 'winbind':
-      ensure  => running,
-      name    => $samba::params::winbind_service,
-      enable  => true,
-      require => Package['winbind'],
+      ensure    => running,
+      name      => $samba::params::winbind_service,
+      enable    => true,
+      hasstatus => true,
+      require   => Package['winbind'],
     }
 
   }
