@@ -4,7 +4,7 @@
 #
 define samba::shares (
   # Share settings
-  $share_name       = 'test',
+  $share_name,
   $template         = 'samba/shares.erb',
   $shares           = false,
   $share_seperator  = undef,
@@ -21,10 +21,9 @@ define samba::shares (
     fail('You must include the samba base class')
   }
 
-  augeas { 'samba_share':
-    changes => template('samba/shares.erb'),
-    require => Package['samba'],
-    notify  => Service['$samba::params::samba_service'],
+  concat::fragment { $name:
+    content => template('samba/shares.erb'),
+    #notify  => Service['$samba::params::samba_service'],
   }
 
 }
