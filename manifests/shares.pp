@@ -21,11 +21,8 @@ define samba::shares (
     fail('You must include the samba base class')
   }
 
-  file { 'smb.conf':
-    content => template($template),
-    owner   => 'root',
-    group   => 'root',
-    mode    => '0644',
+  augeas { 'samba_share':
+    changes => template('samba/shares.erb'),
     require => Package['samba'],
     notify  => Service['$samba::params::samba_service'],
   }
