@@ -41,11 +41,12 @@ class samba (
 ) inherits samba::params {
 
   # validate input!
+  validate_absolute_path($logdir)
   validate_string($workgroup)
   validate_string($passwd_server)
   validate_string($realm)
   validate_string($security)
-  validate_string($idmap_uid)
+  is_numeric($idmap_uid)
   validate_string($idmap_gid)
   validate_string($seperator)
   validate_string($shell)
@@ -60,6 +61,7 @@ class samba (
 
   include '::samba::client::install'
   include '::samba::server'
+  include '::samba::shares'
   include '::samba::winbind'
   include '::samba::config'
 

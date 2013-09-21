@@ -4,7 +4,7 @@
 #
 define samba::shares (
   # Share settings
-  #$share_name,
+  $share_name       = 'test',
   $template         = 'samba/shares.erb',
   $shares           = false,
   $share_seperator  = undef,

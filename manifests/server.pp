@@ -5,9 +5,9 @@ class samba::server (
   $ensure       = present,
   $manage_samba = false,
 ) inherits samba {
+
   $package_ensure = $samba::package_ensure
   $package_name   = $samba::package_name
-
 
   if $enabled {
     $service_enabled = 'running'
