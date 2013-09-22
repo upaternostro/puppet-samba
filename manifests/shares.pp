@@ -22,8 +22,9 @@ define samba::shares (
   }
 
   concat::fragment { $name:
+    target  => '/etc/samba/smb.conf',
     content => template('samba/shares.erb'),
-    #notify  => Service['$samba::params::samba_service'],
+    notify  => Service['samba'],
   }
 
 }
