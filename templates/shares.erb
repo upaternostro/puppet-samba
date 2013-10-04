@@ -1,3 +1,4 @@
+<% @share_name.each do |share| -%>
 <% if @share_name -%>
   [<%= @share_name %>]
 <% end -%>
@@ -27,3 +28,4 @@ guest ok = yes
 <% end -%>
 guest only = yes
 guest account = nobody
+<% end -%>

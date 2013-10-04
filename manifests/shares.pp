@@ -3,9 +3,7 @@
 # == Requires: Concat module
 #
 define samba::shares (
-  # Share settings
   $share_name,
-  $template         = 'samba/shares.erb',
   $shares           = false,
   $share_seperator  = undef,
   $share_path       = undef,
@@ -15,16 +13,10 @@ define samba::shares (
   $share_guest_ok   = undef,
 ) {
 
-  include concat::setup
-
-  if ! defined(Class['samba']) {
-    fail('You must include the samba base class')
-  }
-
-  concat::fragment { $name:
-    target  => '/etc/samba/smb.conf',
+  concat::fragement { $share_name:
+    ensure  => present,
+    target  => $samba::params::config,
     content => template('samba/shares.erb'),
-    notify  => Service['samba'],
   }
 
 }

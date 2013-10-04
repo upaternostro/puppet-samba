@@ -6,6 +6,7 @@
 #
 class samba::params {
 
+  $config             = '/etc/samba/smb.conf'
   $workgroup          = undef
   $passwd_server      = undef
   $realm              = undef

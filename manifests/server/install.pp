@@ -1,6 +1,6 @@
 # == Class: samba::install
 #
-class samba::server (
+class samba::server::install (
   $enabled      = false,
   $ensure       = present,
   $manage_samba = false,

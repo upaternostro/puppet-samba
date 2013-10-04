@@ -14,18 +14,11 @@
 #
 class samba (
   # Global settings
+  $smb_config         = $samba::params::config,
   $logdir             = $samba::params::logdir,
   $global_workgroup   = $samab::params::global_workgroup,
   $package_name       = $samba::params::package_name,
   $package_ensure     = $samba::params::package_ensure,
-
-  $shares            = false,
-  $share_name        = undef,
-  $share_seperator   = undef,
-  $share_path        = undef,
-  $share_public      = undef,
-  $share_writeable   = undef,
-  $share_users       = undef,
 
   $winbind            = false,
   $workgroup          = $samba::params::workgroup,
@@ -52,15 +45,9 @@ class samba (
   validate_string($shell)
   validate_string($use_default_domain)
   validate_string($offline_login)
-  validate_string($share_name)
-  validate_string($share_seperator)
-  validate_string($share_path)
-  validate_string($share_public)
-  validate_string($share_writeable)
-  validate_string($share_users)
 
   include '::samba::client::install'
-  include '::samba::server'
+  include '::samba::server::install'
   include '::samba::winbind'
   include '::samba::config'
 
