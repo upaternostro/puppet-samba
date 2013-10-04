@@ -7,6 +7,7 @@
 class samba::params {
 
   $config             = '/etc/samba/smb.conf'
+  $logdir             = '/var/log/samba/'
   $workgroup          = undef
   $passwd_server      = undef
   $realm              = undef

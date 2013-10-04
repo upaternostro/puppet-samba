@@ -1,7 +1,5 @@
 <% @share_name.each do |share| -%>
-<% if @share_name -%>
-  [<%= @share_name %>]
-<% end -%>
+[<%= @share_name %>]
 <% if @share_comment -%>
   comment = "<%= @share_comment %>"
 <% end -%>
@@ -24,8 +22,8 @@
   valid users = <%= @share_users %>
 <% end -%>
 <% if @share_guest_ok -%>
-guest ok = yes
+  guest ok = yes
 <% end -%>
-guest only = yes
-guest account = nobody
-<% end -%>
+  guest only = yes
+  guest account = nobody
+<% end %>

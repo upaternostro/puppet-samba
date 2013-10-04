@@ -1,15 +1,8 @@
 # == Class: samba::install
 #
-class samba::server::install (
-  $enabled      = false,
-  $ensure       = present,
-  $manage_samba = false,
-) inherits samba {
+class samba::server::install inherits samba {
 
-  $package_ensure = $samba::package_ensure
-  $package_name   = $samba::package_name
-
-  if $enabled {
+  if $server_enabled {
     $service_enabled = 'running'
   } else {
     $service_enabled = 'stopped'
@@ -20,11 +13,17 @@ class samba::server::install (
     name   => $package_name,
   }
 
-  if $manage_samba {
+  if $manage_server {
     service { 'samba':
       ensure => $service_enabled,
-      name   => $samba::samba_service,
-      enable => $enabled,
+      name   => $samba_service,
+      enable => true,
+    }
+
+    concat { $config:
+      owner => 'root',
+      group => 'root',
+      mode  => '0644',
     }
   }
 

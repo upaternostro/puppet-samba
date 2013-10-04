@@ -13,10 +13,16 @@ define samba::shares (
   $share_guest_ok   = undef,
 ) {
 
-  concat::fragement { $share_name:
+  if ! defined(Class['samba::server::install']) {
+    fail('You must include the samba install class before using any samba share resources')
+    include samba::server::install
+  }
+
+  concat::fragment { $share_name:
     ensure  => present,
-    target  => $samba::params::config,
+    target  => '/etc/samba/smb.conf',
     content => template('samba/shares.erb'),
+    notify  => Service['samba'],
   }
 
 }

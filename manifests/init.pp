@@ -19,6 +19,8 @@ class samba (
   $global_workgroup   = $samab::params::global_workgroup,
   $package_name       = $samba::params::package_name,
   $package_ensure     = $samba::params::package_ensure,
+  $manage_server      = false,
+  $server_enabled     = false,
 
   $winbind            = false,
   $workgroup          = $samba::params::workgroup,
@@ -32,6 +34,7 @@ class samba (
   $use_default_domain = $samba::params::use_default_domain,
   $offline_login      = $samba::params::offline_login,
 ) inherits samba::params {
+  include concat::setup
 
   # validate input!
   validate_absolute_path($logdir)
@@ -49,15 +52,13 @@ class samba (
   include '::samba::client::install'
   include '::samba::server::install'
   include '::samba::winbind'
-  include '::samba::config'
 
   anchor { 'samba::begin': }
   anchor { 'samba::end': }
 
   Anchor['samba::begin'] ->
   Class['::samba::client::install'] ->
-  Class['::samba::server'] ->
-  Class['::samba::config'] ->
+  Class['::samba::server::install'] ->
   Anchor['samba::end']
 
 }
