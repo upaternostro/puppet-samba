@@ -1,5 +1,20 @@
 # == Class: samba::winbind
 #
+# This class will install and start the winbind Samba service
+#
+# Parameters
+#
+#  $workgroup
+#  $passwd_server
+#  $realm
+#  $security
+#  $idmap_uid
+#  $idmap_gid
+#  $seperator
+#  $shell
+#  $use_default_domain
+#  $offline_login
+#
 class samba::winbind (
   $workgroup          = $samba::params::workgroup,
   $passwd_server      = $samba::params::passwd_server,

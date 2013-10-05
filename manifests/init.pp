@@ -38,6 +38,8 @@ class samba (
 
   # validate input!
   validate_absolute_path($logdir)
+  validate_bool($manage_server)
+  validate_bool($server_enabled)
   validate_string($workgroup)
   validate_string($passwd_server)
   validate_string($realm)
