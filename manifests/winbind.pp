@@ -16,19 +16,31 @@
 #  $offline_login
 #
 class samba::winbind (
-  $workgroup          = $samba::params::workgroup,
-  $passwd_server      = $samba::params::passwd_server,
-  $realm              = $samba::params::realm,
-  $security           = $samba::params::security,
-  $idmap_uid          = $samba::params::idmap_uid,
-  $idmap_gid          = $samba::params::idmap_gid,
-  $seperator          = $samba::params::seperator,
-  $shell              = $samba::params::shell,
-  $use_default_domain = $samba::params::use_default_domain,
-  $offline_login      = $samba::params::offline_login,
+  $workgroup          = undef,
+  $manage_winbind     = false,
+  $passwd_server      = undef,
+  $realm              = undef,
+  $security           = undef,
+  $idmap_uid          = undef,
+  $idmap_gid          = undef,
+  $seperator          = undef,
+  $shell              = undef,
+  $use_default_domain = undef,
+  $offline_login      = undef,
 ) inherits samba {
 
-  if $winbind {
+  validate_string($workgroup)
+  validate_string($passwd_server)
+  validate_string($realm)
+  validate_string($security)
+  validate_string($idmap_uid)
+  validate_string($idmap_gid)
+  validate_string($seperator)
+  validate_string($shell)
+  validate_string($use_default_domain)
+  validate_string($offline_login)
+
+  if $samba::params::winbind_manage {
     package { 'winbind':
       ensure => installed,
       name   => $samba::winbind::winbind_package,
@@ -42,7 +54,7 @@ class samba::winbind (
       require   => Package['winbind'],
     }
 
-    concat::fragment { 10-winbind:
+    concat::fragment { '10-winbind':
       ensure  => present,
       target  => '/etc/samba/smb.conf',
       order   => '10',

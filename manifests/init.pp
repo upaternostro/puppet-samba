@@ -21,26 +21,31 @@ class samba (
   $global_workgroup   = $samab::params::global_workgroup,
   $package_name       = $samba::params::package_name,
   $package_ensure     = $samba::params::package_ensure,
-  $manage_server      = false,
-  $server_enabled     = false,
 
-  $winbind            = false,
-  $workgroup          = $samba::params::workgroup,
-  $passwd_server      = $samba::params::passwd_server,
-  $realm              = $samba::params::realm,
-  $security           = $samba::params::security,
-  $idmap_uid          = $samba::params::idmap_uid,
-  $idmap_gid          = $samba::params::idmap_gid,
-  $seperator          = $samba::params::seperator,
-  $shell              = $samba::params::shell,
-  $use_default_domain = $samba::params::use_default_domain,
-  $offline_login      = $samba::params::offline_login,
+  $server_ensure      = $samba::params::server_ensure,
+  $server_manage      = $samba::params::server_manage,
+  $server_enabled     = $samba::params::server_enabled,
+
+  $winbind_ensure      = $samba::params::winbind_ensure,
+  $winbind_manage      = $samba::params::winbind_enable,
+  $winbind_enable      = $samba::params::winbind_enable,
+
+  #$workgroup          = $samba::params::workgroup,
+  #$passwd_server      = $samba::params::passwd_server,
+  #$realm              = $samba::params::realm,
+  #$security           = $samba::params::security,
+  #$idmap_uid          = $samba::params::idmap_uid,
+  #$idmap_gid          = $samba::params::idmap_gid,
+  #$seperator          = $samba::params::seperator,
+  #$shell              = $samba::params::shell,
+  #$use_default_domain = $samba::params::use_default_domain,
+  #$offline_login      = $samba::params::offline_login,
 ) inherits samba::params {
   include concat::setup
 
   # validate input!
   validate_absolute_path($logdir)
-  validate_bool($manage_server)
+  validate_bool($server_manage)
   validate_bool($server_enabled)
   validate_string($workgroup)
   validate_string($passwd_server)

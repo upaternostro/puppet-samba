@@ -4,23 +4,27 @@
 #
 # Samba parameters
 #
+# service_manage
+#
+# Boolean to decide if the service should be managed.
+#
 class samba::params {
+
+  # Samba server
+  $server_ensure     = 'present'
+  $server_manage     = false
+  $server_enabled    = false
+
+  # Winbind
+  $winbind_ensure    = 'absent'
+  $winbind_manage    = false
+  $winbind_enabled   = false
 
   $config             = '/etc/samba/smb.conf'
   $logdir             = '/var/log/samba/'
   $hosts_allow        = []
   $interfaces         = []
   $global_workgroup   = undef
-  $workgroup          = undef
-  $passwd_server      = undef
-  $realm              = undef
-  $security           = undef
-  $idmap_uid          = undef
-  $idmap_gid          = undef
-  $seperator          = undef
-  $shell              = undef
-  $use_default_domain = undef
-  $offline_login      = undef
 
   case $::osfamily {
     RedHat: {
