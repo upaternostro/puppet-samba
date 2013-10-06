@@ -9,6 +9,12 @@
 # Boolean to decide if the service should be managed.
 #
 class samba::params {
+  # Global options
+  $config             = '/etc/samba/smb.conf'
+  $logdir             = '/var/log/samba'
+  $hosts_allow        = []
+  $interfaces         = []
+  $global_workgroup   = undef
 
   # Samba server
   $server_ensure     = 'present'
@@ -16,15 +22,20 @@ class samba::params {
   $server_enabled    = true
 
   # Winbind
-  $winbind_ensure    = 'absent'
-  $winbind_manage    = false
-  $winbind_enabled   = false
-
-  $config             = '/etc/samba/smb.conf'
-  $logdir             = '/var/log/samba'
-  $hosts_allow        = []
-  $interfaces         = []
-  $global_workgroup   = undef
+  $winbind_ensure     = 'absent'
+  $winbind_manage     = false
+  $winbind_enabled    = false
+  $workgroup          = undef
+  $manage_winbind     = false
+  $passwd_server      = undef
+  $realm              = undef
+  $security           = undef
+  $idmap_uid          = undef
+  $idmap_gid          = undef
+  $seperator          = undef
+  $shell              = undef
+  $use_default_domain = undef
+  $offline_login      = undef
 
   case $::osfamily {
     RedHat: {
