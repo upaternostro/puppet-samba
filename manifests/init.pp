@@ -14,7 +14,7 @@
 #
 class samba (
   # Global settings
-  $smb_config         = $samba::params::config,
+  $config         = $samba::params::config,
   $logdir             = $samba::params::logdir,
   $hosts_allow        = $samba::params::hosts_allow,
   $interfaces         = $samba::params::interfaces,

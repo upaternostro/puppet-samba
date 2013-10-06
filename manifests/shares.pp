@@ -41,7 +41,7 @@ define samba::shares (
     ensure  => present,
     target  => '/etc/samba/smb.conf',
     content => template('samba/shares.erb'),
-    notify  => Service['samba'],
+    require => Class['samba::server::install'],
   }
 
 }
