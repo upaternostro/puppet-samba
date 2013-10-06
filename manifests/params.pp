@@ -12,7 +12,7 @@ class samba::params {
 
   # Samba server
   $server_ensure     = 'present'
-  $server_manage     = undef
+  $server_manage     = true
   $server_enabled    = false
 
   # Winbind
