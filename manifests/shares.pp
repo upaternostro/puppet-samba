@@ -26,6 +26,9 @@ define samba::shares (
   $share_guest_account = undef,
 ) {
 
+  include samba::params
+  include samba::server::service
+
   if ! defined(Class['samba::server::install']) {
     fail()
   }
@@ -39,9 +42,9 @@ define samba::shares (
   validate_string($share_guest_ok)
   validate_string($share_guest_only)
 
-  concat::fragment { 'share_name':
+  concat::fragment { "share-${name}":
     ensure  => present,
-    target  => '/etc/samba/smb.conf',
+    target  => $samba::params::config,
     order   => '20',
     content => template('samba/shares.erb'),
   }

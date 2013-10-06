@@ -6,8 +6,10 @@
 #
 class samba::server::install {
 
+  include samba::params
+
   package { 'samba':
-    ensure => $samba::server_package_ensure,
+    ensure => $samba::server_ensure,
     name   => $samba::server_package_name,
   }
 

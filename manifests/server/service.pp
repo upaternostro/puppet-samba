@@ -1,6 +1,6 @@
 # ==Class: Samba Server service
 #
-class samba::server::service {
+class samba::server::service inherits samba {
 
   if $samba::params::server_enabled == true {
     $service_enabled = 'running'
