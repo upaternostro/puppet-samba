@@ -40,8 +40,8 @@ define samba::shares (
   concat::fragment { $share_name:
     ensure  => present,
     target  => '/etc/samba/smb.conf',
+    order   => '20',
     content => template('samba/shares.erb'),
-    require => Class['samba::server::install'],
   }
 
 }

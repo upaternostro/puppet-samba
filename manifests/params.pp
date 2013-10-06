@@ -10,6 +10,7 @@ class samba::params {
   $logdir             = '/var/log/samba/'
   $hosts_allow        = []
   $interfaces         = []
+  $global_workgroup   = undef
   $workgroup          = undef
   $passwd_server      = undef
   $realm              = undef

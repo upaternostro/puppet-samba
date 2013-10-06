@@ -42,5 +42,11 @@ class samba::winbind (
       require   => Package['winbind'],
     }
 
+    concat::fragment { 10-winbind:
+      ensure  => present,
+      target  => '/etc/samba/smb.conf',
+      order   => '10',
+      content => template('samba/winbind.erb'),
+    }
   }
 }
