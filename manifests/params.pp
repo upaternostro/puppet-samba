@@ -8,6 +8,8 @@ class samba::params {
 
   $config             = '/etc/samba/smb.conf'
   $logdir             = '/var/log/samba/'
+  $hosts_allow        = []
+  $interfaces         = []
   $workgroup          = undef
   $passwd_server      = undef
   $realm              = undef

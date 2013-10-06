@@ -8,8 +8,12 @@
 
 workgroup = <% @global_workgroup %>
 server string = Samba Server Version %v
-interfaces = lo eth0 192.168.12.2/24 192.168.13.2/24
-hosts allow = 127. 192.168.12. 192.168.13.
+<% if !interfaces.empty? -%>
+interfaces = lo eth0 <%= @interfaces.join(' ') %>
+<% end -%>
+<% if !hosts_allow.empty? -%>
+hosts allow = <%= @hosts_allow.join(' ') %>
+<% end -%>
 
 # --------------------------- Logging Options -----------------------------
 

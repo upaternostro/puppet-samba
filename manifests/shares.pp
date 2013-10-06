@@ -15,13 +15,15 @@
 #
 define samba::shares (
   $share_name,
-  $shares           = false,
-  $share_seperator  = undef,
-  $share_path       = undef,
-  $share_public     = undef,
-  $share_writeable  = undef,
-  $share_users      = undef,
-  $share_guest_ok   = undef,
+  $shares              = false,
+  $share_seperator     = undef,
+  $share_path          = undef,
+  $share_public        = undef,
+  $share_writeable     = undef,
+  $share_users         = undef,
+  $share_guest_ok      = undef,
+  $share_guest_only    = undef,
+  $share_guest_account = undef,
 ) {
 
   include samba::server::install
@@ -33,6 +35,7 @@ define samba::shares (
   validate_string($share_writeable)
   validate_string($share_users)
   validate_string($share_guest_ok)
+  validate_string($share_guest_only)
 
   concat::fragment { $share_name:
     ensure  => present,
