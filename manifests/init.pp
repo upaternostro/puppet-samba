@@ -57,7 +57,10 @@ class samba (
   include '::samba::client::install'
   include '::samba::server::install'
   include '::samba::server::service'
-  include '::samba::winbind'
+
+  if $winbind_manage == true {
+    include '::samba::winbind'
+  }
 
   anchor { 'samba::begin': }
   anchor { 'samba::end': }

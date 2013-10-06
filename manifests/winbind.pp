@@ -40,6 +40,12 @@ class samba::winbind (
   validate_string($use_default_domain)
   validate_string($offline_login)
 
+  if $samba::params::winbind_enabled {
+    $service_ensure = 'running'
+  } else {
+    $service_ensure = 'stopped'
+  }
+
   if $samba::params::winbind_manage {
     package { 'winbind':
       ensure => installed,
@@ -47,7 +53,7 @@ class samba::winbind (
     }
 
     service { 'winbind':
-      ensure    => running,
+      ensure    => $service_ensure,
       name      => $samba::params::winbind_service,
       enable    => true,
       hasstatus => true,
