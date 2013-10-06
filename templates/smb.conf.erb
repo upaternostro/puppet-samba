@@ -17,7 +17,7 @@ hosts allow = <%= @hosts_allow.join(' ') %>
 
 # --------------------------- Logging Options -----------------------------
 
-log file = <%= @logdir %>log.%m
+log file = <%= @logdir %>/log.%m
 # max 50KB per log file, then rotate
 max log size = 50
 

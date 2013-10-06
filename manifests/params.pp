@@ -12,8 +12,8 @@ class samba::params {
 
   # Samba server
   $server_ensure     = 'present'
-  $server_manage     = false
-  $server_enabled    = false
+  $server_manage     = true
+  $server_enabled    = true
 
   # Winbind
   $winbind_ensure    = 'absent'
@@ -21,7 +21,7 @@ class samba::params {
   $winbind_enabled   = false
 
   $config             = '/etc/samba/smb.conf'
-  $logdir             = '/var/log/samba/'
+  $logdir             = '/var/log/samba'
   $hosts_allow        = []
   $interfaces         = []
   $global_workgroup   = undef

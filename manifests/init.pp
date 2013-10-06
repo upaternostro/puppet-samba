@@ -22,13 +22,15 @@ class samba (
   $package_name       = $samba::params::package_name,
   $package_ensure     = $samba::params::package_ensure,
 
+  # Samba Server
   $server_ensure      = $samba::params::server_ensure,
   $server_manage      = $samba::params::server_manage,
   $server_enabled     = $samba::params::server_enabled,
 
+  # Winbind
   $winbind_ensure      = $samba::params::winbind_ensure,
   $winbind_manage      = $samba::params::winbind_enable,
-  $winbind_enable      = $samba::params::winbind_enable,
+  $winbind_enabled     = $samba::params::winbind_enabled,
 
   #$workgroup          = $samba::params::workgroup,
   #$passwd_server      = $samba::params::passwd_server,
@@ -48,6 +50,9 @@ class samba (
   validate_string($server_ensure)
   validate_bool($server_manage)
   validate_bool($server_enabled)
+  validate_string($winbind_ensure)
+  validate_bool($winbind_manage)
+  validate_bool($winbind_enabled)
 
   include '::samba::client::install'
   include '::samba::server::install'
