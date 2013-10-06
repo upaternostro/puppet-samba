@@ -2,6 +2,8 @@
 #
 class samba::server::service inherits samba {
 
+  include '::samba::server::install'
+
   if $samba::params::server_enabled == true {
     $service_enabled = 'running'
     $enable          =  true
