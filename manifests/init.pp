@@ -49,10 +49,6 @@ class samba (
   validate_bool($server_manage)
   validate_bool($server_enabled)
 
-  if $server_manage {
-    $server_samba_manage = $server_manage
-  }
-
   include '::samba::client::install'
   include '::samba::server::install'
   include '::samba::server::service'

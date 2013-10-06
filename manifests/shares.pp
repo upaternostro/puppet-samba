@@ -26,9 +26,6 @@ define samba::shares (
   $share_guest_account = undef,
 ) {
 
-  include samba::params
-  include samba::server::service
-
   if ! defined(Class['samba::server::install']) {
     fail()
   }

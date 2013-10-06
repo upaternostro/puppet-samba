@@ -6,7 +6,7 @@
 
 # ----------------------- Network Related Options -------------------------
 
-workgroup = <% @global_workgroup %>
+workgroup = <%= @global_workgroup %>
 server string = Samba Server Version %v
 <% if !interfaces.empty? -%>
 interfaces = lo eth0 <%= @interfaces.join(' ') %>
@@ -17,7 +17,7 @@ hosts allow = <%= @hosts_allow.join(' ') %>
 
 # --------------------------- Logging Options -----------------------------
 
-log file = <% @logdir %>log.%m
+log file = <%= @logdir %>log.%m
 # max 50KB per log file, then rotate
 max log size = 50
 
