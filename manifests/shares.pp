@@ -39,7 +39,7 @@ define samba::shares (
   validate_string($share_guest_ok)
   validate_string($share_guest_only)
 
-  concat::fragment { $share_name:
+  concat::fragment { 'share_name':
     ensure  => present,
     target  => '/etc/samba/smb.conf',
     order   => '20',

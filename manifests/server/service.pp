@@ -2,7 +2,7 @@
 #
 class samba::server::service {
 
-  if $samba::params::server_enabled {
+  if $samba::params::server_enabled == true {
     $service_enabled = 'running'
     $enable          =  true
   } else {
@@ -10,7 +10,7 @@ class samba::server::service {
     $enable          = false
   }
 
-  if $samba::server::server_manage {
+  if $samba::server::server_manage == true {
     service { 'samba':
       ensure     => $service_enabled,
       enable     => $enable,

@@ -45,22 +45,13 @@ class samba (
 
   # validate input!
   validate_absolute_path($logdir)
-  validate_bool($server_ensure)
+  validate_string($server_ensure)
   validate_bool($server_manage)
   validate_bool($server_enabled)
-  validate_string($workgroup)
-  validate_string($passwd_server)
-  validate_string($realm)
-  validate_string($security)
-  validate_string($idmap_uid)
-  validate_string($idmap_gid)
-  validate_string($seperator)
-  validate_string($shell)
-  validate_string($use_default_domain)
-  validate_string($offline_login)
 
   include '::samba::client::install'
   include '::samba::server::install'
+  include '::samba::server::service'
   include '::samba::winbind'
 
   anchor { 'samba::begin': }
