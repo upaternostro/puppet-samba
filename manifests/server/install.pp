@@ -33,9 +33,16 @@ class samba::server::install inherits samba {
     }
 
     concat { $config:
-      owner => 'root',
-      group => 'root',
-      mode  => '0644',
+      owner   => 'root',
+      group   => 'root',
+      mode    => '0644',
+      require => Package['samba'],
+    }
+
+    concat::fragment { '00-global':
+      target  => '/etc/samba/smb.conf',
+      order   => '01',
+      content => template('samba/smb.conf.erb'),
     }
   }
 
