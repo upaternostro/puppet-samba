@@ -4,7 +4,7 @@
 #
 # Parameters:
 #
-class samba::server::install inherits samba {
+class samba::server::install {
 
   package { 'samba':
     ensure => $samba::server_package_ensure,

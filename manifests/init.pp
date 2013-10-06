@@ -45,6 +45,7 @@ class samba (
 
   # validate input!
   validate_absolute_path($logdir)
+  validate_bool($server_ensure)
   validate_bool($server_manage)
   validate_bool($server_enabled)
   validate_string($workgroup)
@@ -68,6 +69,7 @@ class samba (
   Anchor['samba::begin'] ->
   Class['::samba::client::install'] ->
   Class['::samba::server::install'] ->
+  Class['::samba::server::service'] ->
   Anchor['samba::end']
 
 }

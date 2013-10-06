@@ -26,7 +26,9 @@ define samba::shares (
   $share_guest_account = undef,
 ) {
 
-  include samba::server::install
+  if ! defined(Class['samba::server::install']) {
+    fail()
+  }
 
   validate_string($share_name)
   validate_string($share_seperator)

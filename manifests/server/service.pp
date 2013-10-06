@@ -10,7 +10,7 @@ class samba::server::service {
     $enable          = false
   }
 
-  if $samba::server::manage_server {
+  if $samba::server::server_manage {
     service { 'samba':
       ensure     => $service_enabled,
       enable     => $enable,
@@ -19,14 +19,14 @@ class samba::server::service {
       hasrestart => true,
     }
 
-    concat { $samba::params::config:
+    concat { '/etc/samba/smb.conf':
       owner   => 'root',
       group   => 'root',
       mode    => '0644',
       require => Package['samba'],
     }
 
-    concat::fragment { '00-global':
+    concat::fragment { '01-global':
       target  => '/etc/samba/smb.conf',
       order   => '01',
       content => template('samba/smb.conf.erb'),
