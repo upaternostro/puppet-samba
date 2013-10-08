@@ -47,7 +47,7 @@ class samba::params {
     Debian: {
       $client_package_name    = 'smbclient'
       $server_package_name    = 'samba'
-      $samba_service          = 'samba'
+      $samba_service          = 'smbd'
       $winbind_service        = 'winbind'
       $winbind_package        = 'winbind'
     }
