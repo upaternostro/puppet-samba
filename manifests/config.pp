@@ -2,7 +2,7 @@
 #
 class samba::config inherits samba {
 
-  file  { $config:
+  file  { 'smb.conf':
     ensure  => file,
     path    => '/etc/samba/smb.conf',
     owner   => 'root',

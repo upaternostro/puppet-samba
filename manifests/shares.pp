@@ -2,12 +2,13 @@
 #
 # == Requires: Concat module
 #
-# Parameters
-#
+# Parameters:
 #  $share_name
+#  The name of the share being accessed
 #  $shares
 #  $share_seperator
 #  $share_path
+#  Points to the directory containing the user defined share definitions
 #  $share_public
 #  $share_writeable
 #  $share_users
@@ -15,9 +16,8 @@
 #
 define samba::shares (
   $share_name,
-  $shares              = false,
-  $share_seperator     = undef,
   $share_path          = undef,
+  $share_seperator     = undef,
   $share_public        = undef,
   $share_writeable     = undef,
   $share_users         = undef,
@@ -31,7 +31,6 @@ define samba::shares (
   }
 
   validate_string($share_name)
-  validate_bool($shares)
   validate_string($share_seperator)
   validate_absolute_path($share_path)
   validate_string($share_public)

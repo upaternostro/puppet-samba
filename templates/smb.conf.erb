@@ -15,11 +15,43 @@ interfaces = lo eth0 <%= @interfaces.join(' ') %>
 hosts allow = <%= @hosts_allow.join(' ') %>
 <% end -%>
 
+# Winbind options
+<% if @workgroup -%>
+  workgroup = <%= @workgroup %>
+<% end -%>
+<% if @passwd_server -%>
+  password server = <%= @passwd_server %>
+<% end -%>
+<% if @realm -%>
+  realm = <%= @realm %>
+<% end -%>
+<% if @security -%>
+  security = <%= @security %>
+<% end -%>
+<% if @idmap_uid -%>
+  idmap uid = <%= @idmap_uid %>
+<% end -%>
+<% if @idmap_gid -%>
+  idmap gid = <%= @idmap_gid %>
+<% end -%>
+<%if @separator -%>
+  winbind separator = <%= @separator %>
+<% end -%>
+<%if @template_shell -%>
+  template shell = <%= @template_shell %>
+<% end -%>
+<% if @use_default_domain -%>
+  winbind use default domain = <%= @use_default_domain %>
+<% end -%>
+<% if @offline_login -%>
+  winbind offline logon = <%= @offline_login %>
+<% end -%>
+
 # --------------------------- Logging Options -----------------------------
 
-log file = <%= @logdir %>/log.%m
-# max 50KB per log file, then rotate
-max log size = 50
+  log file = <%= @logdir %>/log.%m
+  # max 50KB per log file, then rotate
+  max log size = 50
 
 # ----------------------- Standalone Server Options ------------------------
 
