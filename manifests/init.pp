@@ -14,34 +14,35 @@
 #
 class samba (
   # Global settings
-  $config             = $samba::params::config,
-  $logdir             = $samba::params::logdir,
-  $hosts_allow        = $samba::params::hosts_allow,
-  $interfaces         = $samba::params::interfaces,
-  $global_workgroup   = $samab::params::global_workgroup,
-  $package_name       = $samba::params::package_name,
-  $package_ensure     = $samba::params::package_ensure,
+  $config              = $samba::params::config,
+  $logdir              = $samba::params::logdir,
+  $hosts_allow         = $samba::params::hosts_allow,
+  $interfaces          = $samba::params::interfaces,
+  $global_workgroup    = $samab::params::global_workgroup,
+  $package_name        = $samba::params::package_name,
+  $package_ensure      = $samba::params::package_ensure,
 
   # Samba Server
-  $server_ensure      = $samba::params::server_ensure,
-  $server_manage      = $samba::params::server_manage,
-  $server_enabled     = $samba::params::server_enabled,
+  $server_manage       = $samba::params::server_manage,
+  $server_enabled      = $samba::params::server_enabled,
+  $server_ensure       = $samba::params::server_ensure,
+  $server_package_name = $samba::params::server_package_name,
 
   # Winbind
+  $winbind_manage      = $samba::params::winbind_manage,
   $winbind_ensure      = $samba::params::winbind_ensure,
-  $winbind_manage      = $samba::params::winbind_enable,
   $winbind_enabled     = $samba::params::winbind_enabled,
 
-  $workgroup          = $samba::params::workgroup,
-  $passwd_server      = $samba::params::passwd_server,
-  $realm              = $samba::params::realm,
-  $security           = $samba::params::security,
-  $idmap_uid          = $samba::params::idmap_uid,
-  $idmap_gid          = $samba::params::idmap_gid,
-  $seperator          = $samba::params::seperator,
-  $shell              = $samba::params::shell,
-  $use_default_domain = $samba::params::use_default_domain,
-  $offline_login      = $samba::params::offline_login,
+  $workgroup           = $samba::params::workgroup,
+  $passwd_server       = $samba::params::passwd_server,
+  $realm               = $samba::params::realm,
+  $security            = $samba::params::security,
+  $idmap_uid           = $samba::params::idmap_uid,
+  $idmap_gid           = $samba::params::idmap_gid,
+  $seperator           = $samba::params::seperator,
+  $shell               = $samba::params::shell,
+  $use_default_domain  = $samba::params::use_default_domain,
+  $offline_login       = $samba::params::offline_login,
 ) inherits samba::params {
   include concat::setup
 

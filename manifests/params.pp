@@ -23,8 +23,8 @@ class samba::params {
 
   # Winbind
   $winbind_ensure     = 'absent'
-  $winbind_manage     = true
-  $winbind_enabled    = true
+  $winbind_manage     = false
+  $winbind_enabled    = false
   $workgroup          = undef
   $passwd_server      = undef
   $realm              = undef

@@ -31,19 +31,22 @@ define samba::shares (
   }
 
   validate_string($share_name)
+  validate_bool($shares)
   validate_string($share_seperator)
-  validate_string($share_path)
+  validate_absolute_path($share_path)
   validate_string($share_public)
   validate_string($share_writeable)
   validate_string($share_users)
   validate_string($share_guest_ok)
   validate_string($share_guest_only)
+  validate_string($share_guest_account)
 
   concat::fragment { "share-${name}":
     ensure  => present,
     target  => $samba::params::config,
     order   => '20',
     content => template('samba/shares.erb'),
+    notify  => Service['samba'],
   }
 
 }
