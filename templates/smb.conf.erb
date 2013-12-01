@@ -6,7 +6,9 @@
 
 # ----------------------- Network Related Options -------------------------
 
+<% if @global_workgroup -%>
 workgroup = <%= @global_workgroup %>
+<% end -%>
 server string = Samba Server Version %v
 <% if !interfaces.empty? -%>
 interfaces = lo eth0 <%= @interfaces.join(' ') %>
@@ -15,7 +17,6 @@ interfaces = lo eth0 <%= @interfaces.join(' ') %>
 hosts allow = <%= @hosts_allow.join(' ') %>
 <% end -%>
 
-# Winbind options
 <% if @workgroup -%>
   workgroup = <%= @workgroup %>
 <% end -%>
@@ -55,7 +56,9 @@ hosts allow = <%= @hosts_allow.join(' ') %>
 
 # ----------------------- Standalone Server Options ------------------------
 
-security = user
+<%if @security -%>
+security = <%= @security -%>
+<% end -%>
 passdb backend = tdbsam
 
 # ----------------------- Domain Controller Options ------------------------

@@ -14,7 +14,16 @@
 #  $share_users
 #  $share_guest_ok
 #
-define samba::shares (
+# Sample Usage:
+#
+# samba::share { 'test_share':
+#   share_name     => 'share_one',
+#   share_path     => '/vagrant',
+#   share_guest_ok => 'yes',
+# }
+#
+#
+define samba::share (
   $share_name,
   $share_path          = undef,
   $share_seperator     = undef,

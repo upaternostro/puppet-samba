@@ -21,6 +21,7 @@ class samba (
   $global_workgroup    = $samab::params::global_workgroup,
   $package_name        = $samba::params::package_name,
   $package_ensure      = $samba::params::package_ensure,
+  $security            = undef,
 
   # Samba Server
   $server_manage       = $samba::params::server_manage,
@@ -44,6 +45,7 @@ class samba (
   $use_default_domain  = $samba::params::use_default_domain,
   $offline_login       = $samba::params::offline_login,
 ) inherits samba::params {
+
   include concat::setup
 
   # validate input!

@@ -16,11 +16,13 @@
 #  $offline_login
 #
 class samba::winbind (
-  $winbind_enable = true,
   $winbind_manage = true,
+  $winbind_enable = true,
   $winbind_ensure = true,
   $winbind_service = $samba::params::winbind_service,
 ) {
+
+  include samba::params
 
   if $winbind_manage == true {
     package { 'winbind':
