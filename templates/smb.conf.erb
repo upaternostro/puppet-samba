@@ -26,8 +26,8 @@ hosts allow = <%= @hosts_allow.join(' ') %>
 <% if @realm -%>
   realm = <%= @realm %>
 <% end -%>
-<% if @security -%>
-  security = <%= @security %>
+<% if @winbind_security -%>
+  security = <%= @winbind_security %>
 <% end -%>
 <% if @idmap_uid -%>
   idmap uid = <%= @idmap_uid %>
@@ -56,31 +56,39 @@ hosts allow = <%= @hosts_allow.join(' ') %>
 
 # ----------------------- Standalone Server Options ------------------------
 
-<%if @security -%>
+<% if @security -%>
 security = <%= @security -%>
+<% else %>
+; security = user
 <% end -%>
-passdb backend = tdbsam
-
+<% if @passdb_backend -%>
+passdb backend = <%= @passdb_backend -%>
+<% end -%>
 # ----------------------- Domain Controller Options ------------------------
 
 # ----------------------- Browser Control Options ----------------------------
 
-local master = no
-os level = 33
-preferred master = yes
+        local master = no
+        os level = 33
+        preferred master = yes
 
 #----------------------------- Name Resolution -------------------------------
 
-wins support = yes
-wins server = w.x.y.z
-wins proxy = yes
-dns proxy = yes
+;        wins support = yes
+;        wins server = w.x.y.z
+;        wins proxy = yes
+;        dns proxy = yes
 
+<% if @printer -%>
 # --------------------------- Printing Options -----------------------------
 
-load printers = yes
-cups options = raw
-
+        load printers = yes
+        cups options = raw
+;       printcap name = /etc/printcap
+        #obtain list of printers automatically on SystemV
+;       printcap name = lpstat
+;       printing = cups
+<% end -%>
 # --------------------------- Filesystem Options ---------------------------
 
 #============================ Share Definitions ==============================

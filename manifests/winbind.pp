@@ -24,7 +24,6 @@ class samba::winbind (
 
   include samba::params
 
-  if $winbind_manage == true {
     package { 'winbind':
       ensure => installed,
       name   => $samba::params::winbind_package,

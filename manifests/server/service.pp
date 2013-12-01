@@ -19,7 +19,7 @@ class samba::server::service inherits samba {
       hasrestart => true,
     }
 
-    concat { '/etc/samba/smb.conf':
+    concat { $config:
       owner   => 'root',
       group   => 'root',
       mode    => '0644',
