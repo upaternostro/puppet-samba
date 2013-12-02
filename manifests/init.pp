@@ -66,6 +66,8 @@ class samba (
   include '::samba::client::install'
   include '::samba::server::install'
   include '::samba::server::service'
+
+  # Winbind
   include '::samba::winbind::install'
   include '::samba::winbind::service'
 
