@@ -38,19 +38,18 @@ class samba (
   $printer             = true,
 
   # Winbind
-  $winbind_manage      = $samba::params::winbind_manage,
-  $winbind_ensure      = $samba::params::winbind_ensure,
-  $winbind_enabled     = $samba::params::winbind_enabled,
-  $workgroup           = $samba::params::workgroup,
-  $passwd_server       = $samba::params::passwd_server,
-  $realm               = $samba::params::realm,
-  $winbind_security    = $samba::params::winbind_security,
-  $idmap_uid           = $samba::params::idmap_uid,
-  $idmap_gid           = $samba::params::idmap_gid,
-  $seperator           = $samba::params::seperator,
-  $shell               = $samba::params::shell,
-  $use_default_domain  = $samba::params::use_default_domain,
-  $offline_login       = $samba::params::offline_login,
+  $winbind_manage_service  = $samba::params::winbind_manage_service,
+  $winbind_package_ensure  = $samba::params::winbind_package_ensure,
+  $workgroup               = $samba::params::workgroup,
+  $passwd_server           = $samba::params::passwd_server,
+  $realm                   = $samba::params::realm,
+  $winbind_security        = $samba::params::winbind_security,
+  $idmap_uid               = $samba::params::idmap_uid,
+  $idmap_gid               = $samba::params::idmap_gid,
+  $seperator               = $samba::params::seperator,
+  $shell                   = $samba::params::shell,
+  $use_default_domain      = $samba::params::use_default_domain,
+  $offline_login           = $samba::params::offline_login,
 ) inherits samba::params {
 
   include concat::setup
@@ -60,16 +59,15 @@ class samba (
   validate_string($server_ensure)
   validate_bool($server_manage)
   validate_bool($server_enabled)
-  validate_string($winbind_ensure)
-  validate_bool($winbind_manage)
-  validate_bool($winbind_enabled)
+  validate_bool($winbind_manage_service)
   validate_re($sa_security, [ 'user', 'share', 'server' ] )
   validate_re($passdb_backend, [ 'smbpasswd', 'tdbsam', 'ldapsam' ] )
 
   include '::samba::client::install'
   include '::samba::server::install'
   include '::samba::server::service'
-  include '::samba::winbind'
+  include '::samba::winbind::install'
+  include '::samba::winbind::service'
 
   anchor { 'samba::begin': }
   anchor { 'samba::end': }

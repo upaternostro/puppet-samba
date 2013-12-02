@@ -22,19 +22,18 @@ class samba::params {
   $server_enabled    = true
 
   # Winbind
-  $winbind_ensure     = 'absent'
-  $winbind_manage     = false
-  $winbind_enabled    = false
-  $workgroup          = undef
-  $passwd_server      = undef
-  $realm              = undef
-  $security           = undef
-  $idmap_uid          = undef
-  $idmap_gid          = undef
-  $seperator          = undef
-  $shell              = undef
-  $use_default_domain = undef
-  $offline_login      = undef
+  $winbind_package_ensure = 'present'
+  $winbind_manage_service = false
+  $workgroup              = undef
+  $passwd_server          = undef
+  $realm                  = undef
+  $security               = undef
+  $idmap_uid              = undef
+  $idmap_gid              = undef
+  $seperator              = undef
+  $shell                  = undef
+  $use_default_domain     = undef
+  $offline_login          = undef
 
   case $::osfamily {
     RedHat: {
