@@ -57,13 +57,15 @@ hosts allow = <%= @hosts_allow.join(' ') %>
 # ----------------------- Standalone Server Options ------------------------
 
 <% if @security -%>
-security = <%= @security -%>
+        security = <%= @security -%>
 <% else %>
-; security = user
+;       security = user
 <% end -%>
 <% if @passdb_backend -%>
-passdb backend = <%= @passdb_backend -%>
+        passdb backend = <%= @passdb_backend -%>
 <% end -%>
+
+
 # ----------------------- Domain Controller Options ------------------------
 
 # ----------------------- Browser Control Options ----------------------------

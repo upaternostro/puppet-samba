@@ -5,18 +5,21 @@
 # Parameters:
 #  $share_name
 #  The name of the share being accessed
-#  $shares
-#  $share_seperator
+#  $share_comment
+#  string to associate with the new share
 #  $share_path
 #  Points to the directory containing the user defined share definitions
+#  $share_seperator
 #  $share_public
 #  $share_writeable
 #  $share_users
 #  $share_guest_ok
+#  $share_guest_account
 #
 # Sample Usage:
 #
 # samba::share { 'test_share':
+#   share_comment  => 'This is a test Samba share',
 #   share_name     => 'share_one',
 #   share_path     => '/vagrant',
 #   share_guest_ok => 'yes',
@@ -25,6 +28,7 @@
 #
 define samba::share (
   $share_name,
+  $share_comment       = undef,
   $share_path          = undef,
   $share_seperator     = undef,
   $share_public        = undef,
@@ -40,6 +44,7 @@ define samba::share (
   }
 
   validate_string($share_name)
+  validate_string($share_comment)
   validate_string($share_seperator)
   validate_absolute_path($share_path)
   validate_string($share_public)

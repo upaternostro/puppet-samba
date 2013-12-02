@@ -35,6 +35,4 @@ class samba::winbind (
       hasstatus => true,
       require   => Package['winbind'],
     }
-  }
-
 }
