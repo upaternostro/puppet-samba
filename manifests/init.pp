@@ -18,11 +18,11 @@ class samba (
   $package_ensure      = $samba::params::package_ensure,
 
   # Global settings
-  $config              = $samba::params::config,
-  $logdir              = $samba::params::logdir,
-  $hosts_allow         = $samba::params::hosts_allow,
-  $interfaces          = $samba::params::interfaces,
-  $global_workgroup    = $samab::params::global_workgroup,
+  $config             = '/etc/samba/smb.conf',
+  $logdir             = '/var/log/samba',
+  $hosts_allow        = [],
+  $interfaces         = [],
+  $global_workgroup   = undef,
 
   # Samba Server
   $server_manage       = $samba::params::server_manage,
@@ -38,8 +38,9 @@ class samba (
   $printer             = true,
 
   # Winbind
-  $winbind_manage_service  = $samba::params::winbind_manage_service,
+  $winbind_manage          = false,
   $winbind_package_ensure  = $samba::params::winbind_package_ensure,
+  $winbind_status          = $samba::params::winbind_status,
   $workgroup               = $samba::params::workgroup,
   $passwd_server           = $samba::params::passwd_server,
   $realm                   = $samba::params::realm,
@@ -59,7 +60,7 @@ class samba (
   validate_string($server_ensure)
   validate_bool($server_manage)
   validate_bool($server_enabled)
-  validate_bool($winbind_manage_service)
+  validate_bool($winbind_manage)
   validate_re($sa_security, [ 'user', 'share', 'server' ] )
   validate_re($passdb_backend, [ 'smbpasswd', 'tdbsam', 'ldapsam' ] )
 
@@ -68,8 +69,12 @@ class samba (
   include '::samba::server::service'
 
   # Winbind
-  include '::samba::winbind::install'
-  include '::samba::winbind::service'
+  if $winbind_manage {
+    class { 'samba::winbind::install': }
+    class { 'samba::winbind::service': }
+
+    Class['samba::winbind::install'] -> Class['samba::winbind::service']
+  }
 
   anchor { 'samba::begin': }
   anchor { 'samba::end': }

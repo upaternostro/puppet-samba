@@ -4,11 +4,16 @@
 #
 # Parameters:
 #
-class samba::server::install {
+class samba::server::install inherits samba {
 
-  package { 'samba':
-    ensure => $samba::params::server_ensure,
-    name   => $samba::params::server_package_name,
+  if $samba::server_ensure == 'present' {
+    $ensure = 'present'
+  } else {
+    $ensure = 'purged'
   }
 
+  package { 'samba':
+    ensure => 'absent',
+    name   => $samba::params::server_package_name,
+  }
 }

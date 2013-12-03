@@ -17,7 +17,7 @@
 #
 class samba::winbind::service inherits samba {
 
-  if $winbind_manage_service == true {
+  if $winbind_status == 'enabled' {
     $winbind_ensure = 'running'
   } else {
     $winbind_ensure = 'stopped'

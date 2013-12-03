@@ -2,9 +2,14 @@
 #
 class samba::winbind::install inherits samba {
 
-  package { 'winbind':
-    ensure => $winbind_package_ensure,
-    name   => $winbind_package,
+  if $winbind_package_ensure == 'present' {
+    $package_ensure = 'present'
+  } else {
+    $package_ensure = 'purged'
   }
 
+    package { 'winbind':
+      ensure => $package_ensure,
+      name   => $winbind_package,
+    }
 }
