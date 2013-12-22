@@ -29,6 +29,16 @@ describe 'samba' do
       :ensure => 'running'
     )}
 
+    # samba configuration file
+    it { should contain_class("samba::server::config") }
+    it do
+      should contain_file('/etc/samba/smb.conf').with({
+        'ensure' => 'present',
+        'owner'  => 'root',
+        'group'  => 'root',
+        'mode'   => '0644',
+      })
+    end
   end
 
 end
