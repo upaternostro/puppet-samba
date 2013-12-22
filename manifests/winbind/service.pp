@@ -16,8 +16,7 @@
 #  $offline_login
 #
 class samba::winbind::service (
-  $winbind_ensure      = 'present',
-  $winbind_status      = 'enabled',
+  $winbind_ensure      = 'running',
   $workgroup           = undef,
   $passwd_server       = undef,
   $realm               = undef,
@@ -30,15 +29,9 @@ class samba::winbind::service (
   $offline_login       = undef,
 ) inherits samba {
 
-  if $winbind_status == 'enabled' {
-    $winbind_ensure = 'running'
-  } else {
-    $winbind_ensure = 'stopped'
-  }
-
   service { 'winbind':
     ensure    => $winbind_ensure,
-    name      => $winbind_service,
+    name      => $samba::params::winbind_service,
     enable    => true,
     hasstatus => true,
     require   => Class['samba::winbind::install'],

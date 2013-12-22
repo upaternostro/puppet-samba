@@ -2,7 +2,7 @@
 #
 class samba::winbind::install inherits samba {
 
-  if $winbind_package_ensure == 'present' {
+  if $samba::manage_packages == true {
     $package_ensure = 'present'
   } else {
     $package_ensure = 'purged'

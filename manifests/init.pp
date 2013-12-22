@@ -22,33 +22,34 @@ class samba (
   $package_name        = $samba::params::package_name,
   $package_ensure      = $samba::params::package_ensure,
 
-  # Global settings
+  # Global config settings
   $config             = '/etc/samba/smb.conf',
   $logdir             = '/var/log/samba',
   $hosts_allow        = [],
   $interfaces         = [],
   $global_workgroup   = undef,
+  # Stand Alone Server Options
+  $sa_security         = 'user',
+  $passdb_backend      = 'tdbsam',
+  # Printer Options
+  $printer             = true,
+
+  # Manage the packages
+  $manage_packages     = true,
 
   # Samba Server
   $server_manage       = false,
   $server_package_name = $samba::params::server_package_name,
 
-  # Stand Alone Server Options
-  $sa_security         = 'user',
-  $passdb_backend      = 'tdbsam',
-
-  # Printer Options
-  $printer             = true,
-
   # Winbind
   $winbind_manage          = false,
-  $winbind_status          = enabled,
 ) inherits samba::params {
 
   include concat::setup
 
   # validate input!
   validate_absolute_path($logdir)
+  validate_bool($manage_packages)
   validate_bool($client_manage)
   validate_bool($server_manage)
   validate_bool($winbind_manage)
@@ -67,19 +68,20 @@ class samba (
   }
 
   # Samba Server
-  if $server_manage {
+  if $server_manage and ! $winbind_manage {
     Anchor['samba::begin'] ->
     class { '::samba::server::install': } ->
+    class { '::samba::server::config': } ~>
     class { '::samba::server::service': } ->
-    class { '::samba::server::config': } ->
     Anchor['samba::end']
   }
 
   # Winbind
-  if $winbind_manage {
+  if $winbind_manage and $server_manage {
     Anchor['samba::begin'] ->
-    class {'::samba::server::install': } ->
-    class {'::samba::server::service': } ->
+    class { '::samba::server::install': } ->
+    class { '::samba::server::config': } ~>
+    class { '::samba::server::service': } ->
     class {'::samba::winbind::install': } ->
     class {'::samba::winbind::service': } ->
     Anchor['samba::end']

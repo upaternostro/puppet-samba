@@ -6,7 +6,7 @@
 #
 class samba::server::install inherits samba {
 
-  if $samba::server_ensure == 'present' {
+  if $samba::manage_packages == true {
     $ensure = 'present'
   } else {
     $ensure = 'purged'
