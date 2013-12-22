@@ -5,12 +5,10 @@
 1. [Overview](#overview)
 2. [Module Description - What the module does and why it is useful](#module-description)
 3. [Setup - The basics of getting started with samba](#setup)
-    * [Setup requirements](#setup-requirements)
-    * [Beginning with samba](#beginning-with-[Modulename])
 4. [Usage - Configuration options and additional functionality](#usage)
 5. [Reference - An under-the-hood peek at what the module is doing and how](#reference)
-5. [Limitations - OS compatibility, etc.](#limitations)
-6. [Development - Guide for contributing to the module](#development)
+6. [Limitations - OS compatibility, etc.](#limitations)
+7. [Development - Guide for contributing to the module](#development)
 
 ##Overview
 
@@ -24,11 +22,13 @@ to the manuals.
 
 ##Setup
 
-###Beginning with samba	
-
-The very basic steps needed for a user to get the module up and running. 
-
 ##Usage
+
+Basic usage.  Installs the samba client:
+
+```puppet
+class { 'samba': }
+```
 
 To manage the samba server:
 
