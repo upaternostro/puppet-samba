@@ -1,32 +1,6 @@
 # == Class: samba::params
 #
-# == Description
-#
-# Samba parameters
-#
-# service_manage
-#
-# Boolean to decide if the service should be managed.
-#
 class samba::params {
-  # Samba server
-  $server_ensure     = 'present'
-  $server_manage     = true
-  $server_enabled    = true
-
-  # Winbind
-  $winbind_ensure         = 'present'
-  $winbind_status         = 'enabled'
-  $workgroup              = undef
-  $passwd_server          = undef
-  $realm                  = undef
-  $security               = undef
-  $idmap_uid              = undef
-  $idmap_gid              = undef
-  $seperator              = undef
-  $shell                  = undef
-  $use_default_domain     = undef
-  $offline_login          = undef
 
   case $::osfamily {
     RedHat: {

@@ -39,27 +39,45 @@ define samba::share (
   $share_guest_account = undef,
 ) {
 
-  if ! defined(Class['samba::server::install']) {
+  if ! defined(Class['samba::server::config']) {
     fail()
   }
 
   validate_string($share_name)
-  validate_string($share_comment)
-  validate_string($share_seperator)
-  validate_absolute_path($share_path)
-  validate_string($share_public)
-  validate_string($share_writeable)
-  validate_string($share_users)
-  validate_string($share_guest_ok)
-  validate_string($share_guest_only)
-  validate_string($share_guest_account)
+
+  if $share_comment {
+    validate_string($share_comment)
+  }
+  if $share_seperator {
+    validate_string($share_seperator)
+  }
+  if $share_path {
+    validate_absolute_path($share_path)
+  }
+  if $share_public {
+    validate_string($share_public)
+  }
+  if $share_writeable {
+    validate_string($share_writeable)
+  }
+  if $share_users {
+    validate_string($share_users)
+  }
+  if $share_guest_ok {
+    validate_string($share_guest_ok)
+  }
+  if $share_guest_only {
+    validate_string($share_guest_only)
+  }
+  if $share_guest_account {
+    validate_string($share_guest_account)
+  }
 
   concat::fragment { "share-${name}":
     ensure  => present,
-    target  => $samba::params::config,
+    target  => '/etc/samba/smb.conf',
     order   => '20',
     content => template('samba/shares.erb'),
-    notify  => Service['samba'],
   }
 
 }

@@ -13,7 +13,7 @@ class samba::server::install inherits samba {
   }
 
   package { 'samba':
-    ensure => 'absent',
+    ensure => present,
     name   => $samba::params::server_package_name,
   }
 }

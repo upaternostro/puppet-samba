@@ -2,18 +2,23 @@
 #
 # This module will install and configure Samba
 #
-# == Paramaters
 #
-# [*winbind*]
-#  Manage Winbind
+# == Parameters:
+#
+#  $client_manage
+#  manage the samba client only
+#
+#  $server_manage
+#  manage the samba server
+#
+#  $winbind_manage
+#  manage the winbind server
 #  Winbind provides the ability to use Windows Domain accounts on
 #  Linux systems
 #
-# [*shares*]
-#  Manage Shares
-#
 class samba (
   # Client package
+  $client_manage       = false,
   $package_name        = $samba::params::package_name,
   $package_ensure      = $samba::params::package_ensure,
 
@@ -25,9 +30,7 @@ class samba (
   $global_workgroup   = undef,
 
   # Samba Server
-  $server_manage       = $samba::params::server_manage,
-  $server_enabled      = $samba::params::server_enabled,
-  $server_ensure       = $samba::params::server_ensure,
+  $server_manage       = false,
   $server_package_name = $samba::params::server_package_name,
 
   # Stand Alone Server Options
@@ -39,50 +42,47 @@ class samba (
 
   # Winbind
   $winbind_manage          = false,
-  $winbind_package_ensure  = $samba::params::winbind_package_ensure,
-  $winbind_status          = $samba::params::winbind_status,
-  $workgroup               = $samba::params::workgroup,
-  $passwd_server           = $samba::params::passwd_server,
-  $realm                   = $samba::params::realm,
-  $winbind_security        = $samba::params::winbind_security,
-  $idmap_uid               = $samba::params::idmap_uid,
-  $idmap_gid               = $samba::params::idmap_gid,
-  $seperator               = $samba::params::seperator,
-  $shell                   = $samba::params::shell,
-  $use_default_domain      = $samba::params::use_default_domain,
-  $offline_login           = $samba::params::offline_login,
+  $winbind_status          = enabled,
 ) inherits samba::params {
 
   include concat::setup
 
   # validate input!
   validate_absolute_path($logdir)
-  validate_string($server_ensure)
+  validate_bool($client_manage)
   validate_bool($server_manage)
-  validate_bool($server_enabled)
   validate_bool($winbind_manage)
   validate_re($sa_security, [ 'user', 'share', 'server' ] )
   validate_re($passdb_backend, [ 'smbpasswd', 'tdbsam', 'ldapsam' ] )
-
-  include '::samba::client::install'
-  include '::samba::server::install'
-  include '::samba::server::service'
-
-  # Winbind
-  if $winbind_manage {
-    class { 'samba::winbind::install': }
-    class { 'samba::winbind::service': }
-
-    Class['samba::winbind::install'] -> Class['samba::winbind::service']
-  }
+  validate_bool($printer)
 
   anchor { 'samba::begin': }
   anchor { 'samba::end': }
 
-  Anchor['samba::begin'] ->
-  Class['::samba::client::install'] ->
-  Class['::samba::server::install'] ->
-  Class['::samba::server::service'] ->
-  Anchor['samba::end']
+  # Samba client
+  if $client_manage {
+    Anchor['samba::begin'] ->
+    class { '::samba::client::install': } ->
+    Anchor['samba::end']
+  }
+
+  # Samba Server
+  if $server_manage {
+    Anchor['samba::begin'] ->
+    class { '::samba::server::install': } ->
+    class { '::samba::server::service': } ->
+    class { '::samba::server::config': } ->
+    Anchor['samba::end']
+  }
+
+  # Winbind
+  if $winbind_manage {
+    Anchor['samba::begin'] ->
+    class {'::samba::server::install': } ->
+    class {'::samba::server::service': } ->
+    class {'::samba::winbind::install': } ->
+    class {'::samba::winbind::service': } ->
+    Anchor['samba::end']
+  }
 
 }
