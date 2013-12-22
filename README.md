@@ -1,4 +1,4 @@
-#samba
+# samba
 
 ####Table of Contents
 
@@ -18,16 +18,15 @@ The Samba module installs, configures, and manages Samba
 
 ##Module Description
 
-If applicable, this section should have a brief description of the technology the module integrates with and what that integration enables. This section should answer the questions: "What does this module *do*?" and "Why would I use it?"
-
-If your module has a range of functionality (installation, configuration, management, etc.) this is the time to mention it.
+The Samba module manages the install and configurtion of samba, and follows the manual
+pages for samba as close as possible.  The module aims to be feature complete in regard
+to the manuals.
 
 ##Setup
 
 ###Beginning with samba	
 
 The very basic steps needed for a user to get the module up and running. 
-
 
 ##Usage
 
@@ -43,16 +42,26 @@ To manage a samba share, use the share defined type:
 
 ```puppet
 samba::share { 'test':
-  share_name => 'test',
-  share_comment => 'I WANT TO PUT IN FORGE',
-  share_path => '/vagrant',
+  share_name     => 'test',
+  share_comment  => 'MODULES SHOULD GO TO FORGE',
+  share_path     => '/vagrant',
   share_guest_ok => 'yes',
 }
 ```
 
 ##Reference
 
-Here, list the classes, types, providers, facts, etc contained in your module. This section should include all of the under-the-hood workings of your module so people know what the module is touching on their system but don't need to mess with things. (We are working on automating this section!)
+###Classes:
+
+* samba::init
+* samba::share
+* samba::client::install
+* samba::params
+* samba::server::install
+* samba::server::config
+* samba::server::service
+* samba::winbind::install
+* samba::winbind::service
 
 ##Limitations
 
