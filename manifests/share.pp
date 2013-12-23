@@ -39,9 +39,7 @@ define samba::share (
   $share_guest_account = undef,
 ) {
 
-  if ! defined(Class['samba::server::config']) {
-    fail()
-  }
+  include '::samba::server::config'
 
   validate_string($share_name)
 

@@ -16,7 +16,7 @@ The Samba module installs, configures, and manages Samba
 
 ##Module Description
 
-The Samba module manages the install and configurtion of samba, and follows the manual
+The Samba module manages the install and configuration of samba, and follows the manual
 pages for samba as close as possible.  The module aims to be feature complete in regard
 to the manuals.
 
@@ -71,6 +71,8 @@ The module has been tested on:
 
 *  CentOS 6
 *  Ubuntu 12.04
+
+LDAP configuration has not been added to this module.  Look for future releases for support.
 
 ##Development
 

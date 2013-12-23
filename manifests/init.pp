@@ -12,7 +12,7 @@
 #  manage the samba server
 #
 #  $winbind_manage
-#  manage the winbind server
+#  Manage the winbind server
 #  Winbind provides the ability to use Windows Domain accounts on
 #  Linux systems
 #
