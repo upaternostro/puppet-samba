@@ -34,7 +34,7 @@ To manage the samba server:
 
 ```puppet
 class { 'samba':
-  manage_server => true,
+  server_manage => true,
 }
 ```
 

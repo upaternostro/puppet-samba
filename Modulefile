@@ -1,4 +1,4 @@
-name 'puppet-samba'
+name 'jonnyx-samba'
 version '0.1.0'
 source 'https://github.com/jonmosco/puppet-samba.git'
 author 'Jon Mosco'
