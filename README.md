@@ -95,3 +95,8 @@ Please submit bugs in the form of pull requests.
 0.1.0
 
 * Initial release
+
+0.1.1
+
+* Bug fixes
+* Parameter validation for winbind
