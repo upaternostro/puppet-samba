@@ -17,32 +17,30 @@
 #  Linux systems
 #
 class samba (
-  # Client package
+  # What we are going to manage
   $client_manage       = false,
-  $package_name        = $samba::params::package_name,
-  $package_ensure      = $samba::params::package_ensure,
+  $server_manage       = false,
+  $winbind_manage      = false,
 
   # Global config settings
-  $config             = '/etc/samba/smb.conf',
-  $logdir             = '/var/log/samba',
-  $hosts_allow        = [],
-  $interfaces         = [],
-  $global_workgroup   = undef,
+  $config              = '/etc/samba/smb.conf',
+  $logdir              = '/var/log/samba',
+  $hosts_allow         = [],
+  $interfaces          = [],
+  $global_workgroup    = undef,
+
   # Stand Alone Server Options
   $sa_security         = 'user',
   $passdb_backend      = 'tdbsam',
+
   # Printer Options
   $printer             = true,
 
-  # Manage the packages
+  # Packages
   $manage_packages     = true,
-
-  # Samba Server
-  $server_manage       = false,
+  $client_package_name = $samba::params::client_package_name,
   $server_package_name = $samba::params::server_package_name,
 
-  # Winbind
-  $winbind_manage          = false,
 ) inherits samba::params {
 
   include concat::setup

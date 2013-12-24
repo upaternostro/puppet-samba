@@ -3,8 +3,8 @@
 class samba::client::install inherits samba {
 
   package { 'samba_client':
-    ensure => $package_ensure,
-    name   => $package_name,
+    ensure => present,
+    name   => $samba::params::client_package_name,
   }
 
 }

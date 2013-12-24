@@ -1,5 +1,5 @@
 name 'jonnyx-samba'
-version '0.1.0'
+version '0.1.1'
 source 'https://github.com/jonmosco/puppet-samba.git'
 author 'Jon Mosco'
 license 'Apache 2.0'

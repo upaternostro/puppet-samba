@@ -38,6 +38,15 @@ class { 'samba':
 }
 ```
 
+To manage the winbind server:
+
+```puppet
+class { 'samba':
+  server_manage => true,
+  winbind_manage => true,
+}
+```
+
 To manage a samba share, use the share defined type:
 
 ```puppet
@@ -48,6 +57,9 @@ samba::share { 'test':
   share_guest_ok => 'yes',
 }
 ```
+
+Note:  There are some options that work well with others, please see the
+man pages for complete info.
 
 ##Reference
 

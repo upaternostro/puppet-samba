@@ -29,6 +29,28 @@ class samba::winbind::service (
   $offline_login       = undef,
 ) inherits samba {
 
+  if $workgroup {
+    validate_string($workgroup)
+  }
+  if $passwd_server {
+    validate_string($passwd_server)
+  }
+  if $realm {
+    validate_string($realm)
+  }
+  if $security {
+    validate_string($security)
+  }
+  if $shell {
+    validate_string($shell)
+  }
+  if $use_default_domain {
+    validate_string($use_default_domain)
+  }
+  if $offline_login {
+    validate_string($offline_login)
+  }
+
   service { 'winbind':
     ensure    => $winbind_ensure,
     name      => $samba::params::winbind_service,
