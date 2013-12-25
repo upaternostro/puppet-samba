@@ -41,6 +41,17 @@ class samba (
   $client_package_name = $samba::params::client_package_name,
   $server_package_name = $samba::params::server_package_name,
 
+  # Winbind settings
+  $workgroup           = undef,
+  $passwd_server       = undef,
+  $realm               = undef,
+  $security            = undef,
+  $idmap_uid           = undef,
+  $idmap_gid           = undef,
+  $seperator           = undef,
+  $shell               = undef,
+  $use_default_domain  = undef,
+  $offline_login       = undef,
 ) inherits samba::params {
 
   include concat::setup
@@ -81,6 +92,7 @@ class samba (
     class { '::samba::server::config': } ~>
     class { '::samba::server::service': } ->
     class {'::samba::winbind::install': } ->
+    class {'::samba::winbind::config': } ~>
     class {'::samba::winbind::service': } ->
     Anchor['samba::end']
   }

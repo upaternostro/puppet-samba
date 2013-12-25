@@ -42,7 +42,7 @@ To manage the winbind server:
 
 ```puppet
 class { 'samba':
-  server_manage => true,
+  server_manage  => true,
   winbind_manage => true,
 }
 ```
