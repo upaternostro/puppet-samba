@@ -36,6 +36,14 @@ To manage the samba server:
 class { 'samba::server': }
 ```
 
+To manage the firewall for samba:
+
+```puppet
+class { 'samba::server':
+  manage_firewall => true,
+}
+```
+
 To manage the winbind server:
 
 ```puppet
@@ -64,6 +72,7 @@ man pages for complete info.
 * samba::params
 * samba::server
 * samba::server::install
+* samba::server::firewall
 * samba::server::config
 * samba::server::service
 * samba::winbind::install
@@ -98,4 +107,5 @@ Please submit bugs in the form of pull requests.
 
 0.2.0
 
-* restructure of module layout
+* Restructure of module layout
+* Added firewall support
