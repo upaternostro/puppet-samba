@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-describe 'samba::share' do
+describe 'samba::server::share' do
   let(:title) { 'test_share' }
-  it { should_include_class('samba') }
+  it { should_include_class('samba::server') }
   it { should_include_class('samba::params') }
 
   it do

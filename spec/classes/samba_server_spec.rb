@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-describe 'samba' do
+describe 'samba::server' do
 
-  context 'when server_manage is true' do
+  context 'samba server management' do
 
     let :facts do
       {
@@ -11,10 +11,6 @@ describe 'samba' do
       }
     end
     it { should contain_class("samba::params") }
-
-    let :params do
-      { :server_manage => true }
-    end
 
     it { should contain_class("samba::server::install") }
 
