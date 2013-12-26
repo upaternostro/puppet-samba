@@ -2,6 +2,8 @@
 #
 class samba::params {
   $manage_packages     = true
+  $manage_firewall     = false
+
   # globals
   $config              = '/etc/samba/smb.conf'
   $logdir              = '/var/log/samba'
