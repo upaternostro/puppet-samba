@@ -15,7 +15,7 @@
 #  $use_default_domain
 #  $offline_login
 #
-class samba::winbind::service inherits samba {
+class samba::winbind::service {
 
   service { 'winbind':
     ensure    => running,

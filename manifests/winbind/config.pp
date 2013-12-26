@@ -1,16 +1,29 @@
 # == Class: samba::winbind::config
 #
-class samba::winbind::config (
-  $config    = $samba::winbind::config,
-  $workgroup = undef,
-) inherits samba::params {
+class samba::winbind::config {
+
+  $config              = $samba::winbind::config
+  $workgroup           = $samba::winbind::workgroup
+  $passwd_server       = $samba::winbind::passwd_server
+  $realm               = $samba::winbind::realm
+  $security            = $samba::winbind::security
+  $idmap_uid           = $samba::winbind::idmap_uid
+  $idmap_gid           = $samba::winbind::idmap_gid
+  $seperator           = $samba::winbind::seperator
+  $shell               = $samba::winbind::shell
+  $use_default_domain  = $samba::winbind::use_default_domain
+  $offline_login       = $samba::winbind::offline_login
 
   if $workgroup {
     validate_string($workgroup)
   }
+  if $passwd_server {
+    validate_string($passwd_server)
+  }
 
   concat::fragment { '10-winbind':
-    target  => '/etc/samba/smb.conf',
+    ensure  => present,
+    target  => $config,
     order   => '10',
     content => template('samba/winbind.erb'),
   }

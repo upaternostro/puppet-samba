@@ -19,10 +19,13 @@ class samba::server (
   $printer             = $samba::params::printer,
 ) inherits samba::params {
 
-  Anchor['samba::begin'] ->
+  anchor { 'samba::server::begin': }
+  anchor { 'samba::server::end': }
+
+  Anchor['samba::server::begin'] ->
   class { '::samba::server::install': } ->
   class { '::samba::server::config': } ~>
   class { '::samba::server::service': } ->
-  Anchor['samba::end']
+  Anchor['samba::server::end']
 
 }

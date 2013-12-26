@@ -1,6 +1,7 @@
 # == Class: samba::params
 #
 class samba::params {
+  $manage_packages     = true
   # globals
   $config              = '/etc/samba/smb.conf'
   $logdir              = '/var/log/samba'

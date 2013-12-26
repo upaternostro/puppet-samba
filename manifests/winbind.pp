@@ -2,6 +2,7 @@
 #
 class samba::winbind (
   $config              = $samba::params::config,
+  $manage_packages     = $samba::params::manage_packages,
   $winbind_packages    = $samba::params::winbind_packages,
   $workgroup           = $samba::params::workgroup,
   $passwd_server       = $samba::params::passwd_server,
@@ -15,9 +16,13 @@ class samba::winbind (
   $offline_login       = $samba::params::offline_login,
 ) inherits samba::params {
 
-  Anchor['samba::begin'] ->
+  anchor { 'samba::winbind::begin': }
+  anchor { 'samba::winbind::end': }
+
+  Anchor['samba::winbind::begin'] ->
   class {'::samba::winbind::install': } ->
+  class {'::samba::winbind::config': } ~>
   class {'::samba::winbind::service': } ->
-  Anchor['samba::end']
+  Anchor['samba::winbind::end']
 
 }

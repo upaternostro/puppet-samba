@@ -2,9 +2,10 @@
 #
 class samba::winbind::install {
 
-  include 'samba::params'
+  $manage_packages = $samba::winbind::manage_packages
+  $winbind_package = $samba::winbind::winbind_package
 
-  if $samba::winbind::manage_packages {
+  if $manage_packages {
     $package_ensure = 'present'
   } else {
     $package_ensure = 'purged'
@@ -12,7 +13,6 @@ class samba::winbind::install {
 
   package { 'winbind':
     ensure   => $package_ensure,
-    name     => $samba::params::winbind_package,
-    require  => Class['samba::server'],
+    name     => $winbind_package,
   }
 }
