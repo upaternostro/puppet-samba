@@ -1,6 +1,31 @@
 # == Class: samba::params
 #
 class samba::params {
+  # globals
+  $config              = '/etc/samba/smb.conf'
+  $logdir              = '/var/log/samba'
+  $hosts_allow         = []
+  $interfaces          = []
+  $global_workgroup    = undef
+
+  # Stand Alone Server Options
+  $sa_security         = 'user'
+  $passdb_backend      = 'tdbsam'
+
+  # Printer Options
+  $printer             = true
+
+  # Winbind
+  $workgroup           = undef
+  $passwd_server       = undef
+  $realm               = undef
+  $security            = undef
+  $idmap_uid           = undef
+  $idmap_gid           = undef
+  $seperator           = undef
+  $shell               = undef
+  $use_default_domain  = undef
+  $offline_login       = undef
 
   case $::osfamily {
     RedHat: {

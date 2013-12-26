@@ -10,10 +10,10 @@
 workgroup = <%= @global_workgroup %>
 <% end -%>
 server string = Samba Server Version %v
-<% if !interfaces.empty? -%>
+<% if !@interfaces.empty? -%>
 interfaces = lo eth0 <%= @interfaces.join(' ') %>
 <% end -%>
-<% if !hosts_allow.empty? -%>
+<% if !@hosts_allow.empty? -%>
 hosts allow = <%= @hosts_allow.join(' ') %>
 <% end -%>
 

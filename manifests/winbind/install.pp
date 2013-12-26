@@ -1,15 +1,18 @@
 # == Class: samba::winbind::install
 #
-class samba::winbind::install inherits samba {
+class samba::winbind::install {
 
-  if $samba::manage_packages == true {
+  include 'samba::params'
+
+  if $samba::winbind::manage_packages {
     $package_ensure = 'present'
   } else {
     $package_ensure = 'purged'
   }
 
-    package { 'winbind':
-      ensure => $package_ensure,
-      name   => $winbind_package,
-    }
+  package { 'winbind':
+    ensure   => $package_ensure,
+    name     => $samba::params::winbind_package,
+    require  => Class['samba::server'],
+  }
 }

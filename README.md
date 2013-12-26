@@ -27,30 +27,25 @@ to the manuals.
 Basic usage.  Installs the samba client:
 
 ```puppet
-class { 'samba': }
+class { 'samba::client': }
 ```
 
 To manage the samba server:
 
 ```puppet
-class { 'samba':
-  server_manage => true,
-}
+class { 'samba::server': }
 ```
 
 To manage the winbind server:
 
 ```puppet
-class { 'samba':
-  server_manage  => true,
-  winbind_manage => true,
-}
+class { 'samba::winbind': }
 ```
 
 To manage a samba share, use the share defined type:
 
 ```puppet
-samba::share { 'test':
+samba::server::share { 'test':
   share_name     => 'test',
   share_comment  => 'MODULES SHOULD GO TO FORGE',
   share_path     => '/vagrant',
@@ -65,14 +60,14 @@ man pages for complete info.
 
 ###Classes:
 
-* samba::init
-* samba::share
-* samba::client::install
+* samba::client
 * samba::params
+* samba::server
 * samba::server::install
 * samba::server::config
 * samba::server::service
 * samba::winbind::install
+* samba::winbind::config
 * samba::winbind::service
 
 ##Limitations
@@ -100,3 +95,7 @@ Please submit bugs in the form of pull requests.
 
 * Bug fixes
 * Parameter validation for winbind
+
+0.2.0
+
+* restructure of module layout

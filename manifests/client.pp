@@ -1,6 +1,6 @@
-# == Class: samba::client::install
+# == Class: samba::client
 #
-class samba::client::install (
+class samba::client (
   $client_package_name = $samba::params::client_package_name
 ) inherits samba::params {
 
