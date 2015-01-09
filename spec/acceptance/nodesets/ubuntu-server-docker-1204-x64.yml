@@ -1,0 +1,10 @@
+HOSTS:
+  ubuntu-12-04-docker:
+    roles:
+      - master
+    platform: ubuntu-12.04-x64
+    image: ubuntu:12.04
+    hypervisor: docker
+    docker_cmd: '["/sbin/init"]'
+CONFIG:
+  type: foss

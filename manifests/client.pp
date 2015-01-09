@@ -1,8 +1,6 @@
 # == Class: samba::client
 #
-class samba::client (
-  $client_package_name = $samba::params::client_package_name
-) inherits samba::params {
+class samba::client inherits samba::params {
 
   package { 'samba_client':
     ensure => present,

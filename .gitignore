@@ -2,3 +2,5 @@ order
 pkg/
 Gemfile.lock
 TODO
+.vagrant/
+spec/fixtures/

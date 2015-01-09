@@ -4,8 +4,7 @@
 # 139
 # 445
 #
-class samba::server::firewall {
-  $manage_firewall = $samba::server::manage_firewall
+class samba::server::firewall inherits samba::server {
 
   if $manage_firewall {
     # This list will expand when LDAP support is build into the module

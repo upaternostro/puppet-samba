@@ -1,11 +1,11 @@
-# ==Class: Samba Server service
+# == Class: Samba Server service
 #
-class samba::server::service {
+class samba::server::service inherits samba::server {
 
   service { 'samba':
     ensure     => running,
     enable     => true,
-    name       => $samba::server::samba_service,
+    name       => $samba_service,
     hasstatus  => true,
     hasrestart => true,
   }

@@ -66,18 +66,23 @@ man pages for complete info.
 
 ##Reference
 
-###Classes:
+###Classes
+
+###Public Classes:
 
 * samba::client
-* samba::params
 * samba::server
 * samba::server::install
-* samba::server::firewall
 * samba::server::config
 * samba::server::service
 * samba::winbind::install
 * samba::winbind::config
 * samba::winbind::service
+
+###Private Classes:
+
+* samba::params
+* samba::server::firewall
 
 ##Limitations
 
@@ -85,8 +90,9 @@ This module has been built on and tested against Puppet 3.0 and higher.
 
 The module has been tested on:
 
-*  CentOS 6
-*  Ubuntu 12.04
+* CentOS 6
+* Ubuntu 12.04
+* Ubuntu 14.04
 
 LDAP configuration has not been added to this module.  Look for future releases for support.
 
@@ -109,3 +115,10 @@ Please submit bugs in the form of pull requests.
 
 * Restructure of module layout
 * Added firewall support
+
+0.3.0
+
+* Bug fixes
+* Parameter cleanup
+* Switch to metadata.json
+* Add acceptance testing

@@ -20,22 +20,19 @@ class samba::server (
   $printer             = $samba::params::printer,
 ) inherits samba::params {
 
-  anchor { 'samba::server::begin': }
-  anchor { 'samba::server::end': }
-
   if $manage_firewall {
-    Anchor['samba::server::begin'] ->
+    anchor { '::samba::server::begin': }->
     class { '::samba::server::install': } ->
     class { '::samba::server::firewall': } ->
     class { '::samba::server::config': } ~>
     class { '::samba::server::service': } ->
-    Anchor['samba::server::end']
+    anchor {'::samba::server::end': }
   } else {
-    Anchor['samba::server::begin'] ->
+    anchor { '::samba::server::begin': } ->
     class { '::samba::server::install': } ->
     class { '::samba::server::config': } ~>
     class { '::samba::server::service': } ->
-    Anchor['samba::server::end']
+    anchor { '::samba::server::end': }
   }
 
 }

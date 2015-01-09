@@ -16,13 +16,10 @@ class samba::winbind (
   $offline_login       = $samba::params::offline_login,
 ) inherits samba::params {
 
-  anchor { 'samba::winbind::begin': }
-  anchor { 'samba::winbind::end': }
-
-  Anchor['samba::winbind::begin'] ->
+  anchor {'samba::winbind::begin': } ->
   class {'::samba::winbind::install': } ->
   class {'::samba::winbind::config': } ~>
   class {'::samba::winbind::service': } ->
-  Anchor['samba::winbind::end']
+  anchor {'samba::winbind::end': }
 
 }
