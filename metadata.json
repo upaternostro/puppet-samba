@@ -2,7 +2,7 @@
   "name": "jonnyx-samba",
   "version": "0.3.0",
   "author": "jonnyx",
-  "summary": "Samba Module for Puppet"
+  "summary": "Samba Module for Puppet",
   "license": "Apache-2.0",
   "source": "https://github.com/jonmosco/puppet-samba",
   "project_page": "https://github.com/jonmosco/puppet-samba",
