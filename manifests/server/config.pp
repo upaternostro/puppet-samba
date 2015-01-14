@@ -3,9 +3,9 @@
 class samba::server::config inherits samba::server {
 
   concat { $config:
-    owner   => 'root',
-    group   => 'root',
-    mode    => '0644',
+    owner => 'root',
+    group => 'root',
+    mode  => '0644',
   }
 
   concat::fragment { '01-global':
