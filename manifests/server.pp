@@ -18,6 +18,11 @@ class samba::server (
 
   # Printer Options
   $printer             = $samba::params::printer,
+
+  # Service
+  $service_name        = $samba::params::service_name,
+  $service_ensure      = $samba::params::service_ensure,
+  $service_enable      = $samba::params::service_enable,
 ) inherits samba::params {
 
   if $manage_firewall {

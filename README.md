@@ -9,6 +9,7 @@
 5. [Reference - An under-the-hood peek at what the module is doing and how](#reference)
 6. [Limitations - OS compatibility, etc.](#limitations)
 7. [Development - Guide for contributing to the module](#development)
+    * [Tests](#running-tests)
 
 ##Overview
 
@@ -90,6 +91,7 @@ This module has been built on and tested against Puppet 3.0 and higher.
 
 The module has been tested on:
 
+* CentOS 5
 * CentOS 6
 * Ubuntu 12.04
 * Ubuntu 14.04
@@ -99,6 +101,15 @@ LDAP configuration has not been added to this module.  Look for future releases 
 ##Development
 
 Please submit bugs in the form of pull requests.
+
+###Running Tests
+
+```
+gem install bundler
+bundle install
+bundle exec rake spec
+bundle exec rspec spec/acceptance
+```
 
 ##Release Notes/Contributors/Etc
 

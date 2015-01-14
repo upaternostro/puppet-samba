@@ -29,19 +29,22 @@ class samba::params {
   $shell               = undef
   $use_default_domain  = undef
   $offline_login       = undef
+  $service_enable      = true
+  $service_ensure      = 'running'
+  $service_manage      = true
 
   case $::osfamily {
     RedHat: {
       $client_package_name    = 'samba-client'
       $server_package_name    = 'samba'
-      $samba_service          = 'smb'
+      $service_name           = 'smb'
       $winbind_package        = 'samba-winbind'
       $winbind_service        = 'winbind'
     }
     Debian: {
       $client_package_name    = 'smbclient'
       $server_package_name    = 'samba'
-      $samba_service          = 'smbd'
+      $service_name           = 'smbd'
       $winbind_service        = 'winbind'
       $winbind_package        = 'winbind'
     }
