@@ -5,11 +5,11 @@ group :development, :test do
   gem 'rspec-puppet',            :require => false
   gem 'puppetlabs_spec_helper',  :require => false
   gem 'puppet-lint',             :require => false
-  gem 'beaker', :git => 'git@github.com:puppetlabs/beaker.git', :branch => 'master'
-  gem 'beaker-rspec', :git => 'git@github.com:puppetlabs/beaker-rspec.git', :branch => 'master'
-  #gem 'serverspec',              :require => false
+  gem 'beaker',                  :require => false
+  gem 'beaker-rspec',            :require => false
+  #gem 'serverspec',             :require => false
   gem 'docker-api',              :require => false
-  gem 'rspec', '~> 3.1'
+  gem 'rspec',                   :require => false
 end
 
 if puppetversion = ENV['PUPPET_GEM_VERSION']
