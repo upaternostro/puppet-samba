@@ -34,14 +34,14 @@ class samba::params {
   $service_manage      = true
 
   case $::osfamily {
-    RedHat: {
+    'RedHat': {
       $client_package_name    = 'samba-client'
       $server_package_name    = 'samba'
       $service_name           = 'smb'
       $winbind_package        = 'samba-winbind'
       $winbind_service        = 'winbind'
     }
-    Debian: {
+    'Debian': {
       $client_package_name    = 'smbclient'
       $server_package_name    = 'samba'
       $service_name           = 'smbd'
