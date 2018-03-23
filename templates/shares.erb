@@ -2,8 +2,8 @@
 <% if @share_comment -%>
   comment = "<%= @share_comment %>"
 <% end -%>
-<% if @browseable -%>
-  browseable = <%= @browseable %>
+<% if @share_browseable -%>
+  browseable = <%= @share_browseable %>
 <% end -%>
 <% if @guest_ok -%>
   guest ok = <%= @guest_ok %>
@@ -23,9 +23,9 @@
 <% if @share_guest_ok -%>
   guest ok = yes
 <% end -%>
-<% if @share_guest_only %>
-  guest only = @share_guest_only
+<% if @share_guest_only -%>
+  guest only = <%= @share_guest_only %>
 <% end -%>
-<% if @share_guest_account %>
-  guest account = @share_guest_account
+<% if @share_guest_account -%>
+  guest account = <%= @share_guest_account %>
 <% end -%>
