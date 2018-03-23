@@ -61,3 +61,6 @@ hosts allow = <%= @hosts_allow.join(' ') %>
 <% end -%>
 # --------------------------- Filesystem Options ---------------------------
 
+<% if @strict_locking -%>
+strict locking = <%= @strict_locking %>
+<% end -%>

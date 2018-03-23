@@ -18,6 +18,9 @@ class samba::params {
   # Printer Options
   $printer             = true
 
+  # Other
+  $strict_locking      = yes
+
   # Winbind
   $workgroup           = undef
   $passwd_server       = undef

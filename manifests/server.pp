@@ -19,6 +19,9 @@ class samba::server (
   # Printer Options
   $printer             = $samba::params::printer,
 
+  # Other
+  $strict_locking      = $samba::params::strict_locking,
+
   # Service
   $service_name        = $samba::params::service_name,
   $service_ensure      = $samba::params::service_ensure,
