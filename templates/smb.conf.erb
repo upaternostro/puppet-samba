@@ -25,11 +25,11 @@ hosts allow = <%= @hosts_allow.join(' ') %>
 
 # ----------------------- Standalone Server Options ------------------------
 
-<% if @security -%>
-        security = <%= @security -%>
+<% if @sa_security -%>
+        security = <%= @sa_security -%>
 <% else %>
 ;       security = user
-<% end -%>
+<% end %>
 <% if @passdb_backend -%>
         passdb backend = <%= @passdb_backend -%>
 <% end -%>
