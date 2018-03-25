@@ -2,7 +2,7 @@
 #
 class samba::server (
   $manage_packages     = true,
-  $server_pacakge_name = $samba::params::server_package_name,
+  $server_package_name = $samba::params::server_package_name,
   $manage_firewall     = $samba::params::manage_firewall,
 
   # Global config settings
