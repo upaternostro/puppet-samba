@@ -39,6 +39,7 @@ define samba::server::share (
   $share_guest_account = undef,
   $share_read_only     = undef,
   $share_write_list    = undef,
+  $share_read_list     = undef,
 ) {
 
   include '::samba::server::config'
