@@ -72,7 +72,6 @@ define samba::server::share (
   }
 
   concat::fragment { "share-${name}":
-    ensure  => present,
     target  => '/etc/samba/smb.conf',
     order   => '20',
     content => template('samba/shares.erb'),
